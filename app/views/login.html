@@ -1,0 +1,22 @@
+<div class="content" ng-controller="UsersController">
+    <div class="row">
+        <label class="col-xs-4"></label>
+        <div id="content" class="col-xs-8">
+            <form  >
+                <h1>LOGIN</h1>
+                <div>
+                   <input type="text"  placeholder="INGRESE SU USUARIO..." id="username" ng-model="user.username">
+                </div>
+                <div>
+                    <input type="password" placeholder="INGRESE SU CONTRASEÑA..." id="password" required="" ng-model="user.password">
+                </div>
+                 <input type="submit" value="Entrar"  ng-click="login(user)">
+            </form>
+            <div class="boton">
+                <p>Bienvenido A Deposito Emelina</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

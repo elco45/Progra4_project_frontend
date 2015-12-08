@@ -1,0 +1,103 @@
+<div ng-controller="VendedorController" class="container color_panel" id="vend">
+  <div class="row">
+    <input type="button" ng-click="goAdmin()" value="Admin">
+  </div>
+  <div class="row">
+    <div>
+      <div class="col-md-12 col-xs-12 " id='pestaña1'>
+        <center><h1 class="titulo">CONTROL DE FACTURA</h1></center> 
+        <br>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <p class="texto">Nombre Vendedor</p> 
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">   
+        <p class="texto"> Codigo de vendedor</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <p class="texto">Nombre de Cliente</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+       <input type="text" name="NombreVendedor" ng-model="vendedor.name">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <input type="text" name="CodigoVendedor" ng-model="vendedor.id">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <input type="text" name="NombreCliente" ng-model="cliente.name">
+      </div>
+    </div>  
+    <div class="row">
+      <hr>
+      <div class="col-md-4 col-md-offset-3 col-xs-6 ">
+        <p class="texto">INGRESE CODIGO DE BARRA</p>
+      </div>
+      <div class="col-md-5 col-xs-6 ">
+        <input id="search" type="text" name="CodigoBarra" autofocus="autofocus" ng-model="search.id" ng-keydown="addFactura($event)">
+      </div>
+    </div>  
+  </div>        
+  <br>
+  <br>
+  <div class="row table-responsive normal "> 
+    <table class="table table-bordered table-hover table-hover">
+      <caption class="colorcabeza">Carrito de Compra</caption>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Descripción</td>
+          <td>Precio</td>
+          <td>Cantidad</td>
+          <td>Total por producto</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody >
+       <tr ng-repeat="linea_factura in factura track by $index" id="{{fact}}" >
+        <td>
+          {{linea_factura.id}}
+        </td>
+        <td>
+          {{linea_factura.descripcion}}
+        </td>
+        <td>
+          {{linea_factura.precio}}
+        </td>
+        <td>
+          <input id="{{$index}}" type="number" min="1" value="{{linea_factura.cantidad}}" max="{{linea_factura.cantidadmax}}" ng-model="lf_cantidad" ng-click="changeCant(linea_factura, $index) "/>
+        </td>
+        <td>
+          <input id="{{$index}}+a" value="{{linea_factura.total}}" disabled="disabled"/>
+        </td>
+        <td>
+          <input type="button" ng-click="removeFact(linea_factura)" value="X">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <label class="col-md-offset-8 col-md-1">Subtotal</label>
+    <input id="sub" type="number" disabled="disabled" class="col-md-3" value="0"/>
+  </div>
+  <div class="row">
+    <label class="col-md-offset-8 col-md-1">ISV</label>
+    <input id="isv" type="number" disabled="disabled" class="col-md-3" value="0"/>
+  </div>
+  <div class="row">
+    <label class="col-md-offset-8 col-md-1">Total</label>
+    <input id="tot" type="number" disabled="disabled" class="col-md-3" value="0"/>
+  </div>
+  <div class="row">
+    <div class="col-md-7 col-md-offset-4">
+      <input type="button" ng-click="efectuarPago()" value="Efectuar Pago">
+      <input class="col-md-offset-1" type="button" ng-click="cancel()" value="Cancelar">
+    </div>
+  </div>  
+</div>
+        
+        

@@ -1,0 +1,128 @@
+<div class="row">
+	<div class="col-lg-12">
+		<ul id="myTab" class="nav nav-tabs nav-justified">
+			<li class="active"><a data-target="#agregarProduct" data-toggle="tab">Agregar Producto</a>
+			</li>
+			<li class=""><a class="btn" data-target="#modificarProduct" ng-click="getFetch()" data-toggle="tab">Modificar Producto</a>
+			</li>
+		</ul>
+
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade active in" id="agregarProduct">
+				<hr>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row">
+							<label class="col-md-3 ">ID: </label> 
+							<input type="text" class="texto col-md-6" ng-model="producto.id">
+							<label class="col-md-3"></label>
+						</div>
+
+						<div class="row">
+							<label class="col-md-3 ">Descripcion: </label> 
+							<input type="text" class="texto col-md-6" ng-model="producto.descripcion">
+							<label class="col-md-3"></label>
+						</div>
+						<div class="row">
+							<label class="col-md-3 ">Fecha de Ingreso: </label> 
+							<input type="date" class="texto col-md-6" ng-model="producto.fecha_ingreso">
+							<label class="col-md-3"></label>
+						</div>
+						<div class="row">
+							<label class="col-md-3 ">Fecha de vencimiento 1: </label>
+							
+							<input type="date" class="texto col-md-6" ng-model="producto.fecha_venc" >
+							<label class="col-md-3"></label>
+						</div>
+						<div class="row">
+							<label class="col-md-3 ">Precio: </label> 
+							 <input type="number" class="texto col-md-6" ng-model="producto.precio">
+							<label class="col-md-3"></label>
+						</div>
+						<div class="row">
+							<label class="col-md-3 ">Cantidad: </label> 
+							<input type="number" class="texto col-md-6" ng-model="producto.cantidad">
+							<label class="col-md-3"></label>
+						</div>
+					</div>
+					<div class="col-md-6 tabla_crear">
+						<table id="taba_venta" class="taba_v">
+							<tr>
+								<td><strong>Id</strong></td>
+								<td><strong>Descripción</strong></td>
+								<td><strong>Fecha Ing</strong></td>
+								<td><strong>Fecha Venc</strong></td>
+								<td><strong>Precio</strong></td>
+								<td><strong>Cantidad</strong></td>
+							</tr>
+							<tr ng-repeat="producto in productos">
+								<td>{{producto.id}}</td>
+								<td>{{producto.descripcion}}</td>
+								<td>{{producto.fecha_ingreso}}</td>
+								<td>{{producto.fecha_venc}}</td>
+								<td>{{producto.precio}}</td>
+								<td>{{producto.cantidad}}</td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+				<div>
+					<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="modificarProduct">
+				<br>
+				<div class="row">
+					<table id="taba_venta1" class="taba_v">
+						<tr>
+							<td><strong>Id</strong></td>
+							<td><strong>Descripcion</strong></td>
+							<td><strong>Fecha Ingreso</strong></td>
+							<td><strong>Fecha Vencimiento</strong></td>
+							<td><strong>Precio</strong></td>
+							<td><strong>Cantidad</strong></td>
+							<td><strong> Opcion</strong></td>
+						</tr>
+						<tr>
+							<td><input type="text" placeholder="ID" class="cajas" ng-model="productoM.id"></td>
+							<td><input type="text" placeholder="Descripcion" class="cajas" ng-model="productoM.descripcion"></td>
+							<td><input type="date" placeholder="Fecha Ingreso" class="cajas" ng-model="productoM.fecha_ingreso"></td>
+							<td><input type="date" placeholder="Fecha Vencimiento" class="cajas" ng-model="productoM.fecha_venc"></td>
+							<td><input type="text" placeholder="Precio" class="cajas" ng-model="productoM.precio"></td>
+							<td><input type="text" placeholder="Cantidad" class="cajas" ng-model="productoM.cantidad"></td>
+							<td> <input type="button" class="btn btn-danger caja" value="Modificar" ng-click="putProd()"></td>
+						</tr>
+					</table>
+				</div>
+				<hr>
+				<div class="row">
+					<table  class="tr1">
+						<tr >
+							<td><strong>Id</strong></td>
+							<td><strong>Descripción</strong></td>
+							<td><strong>Fecha Ingreso</strong></td>
+							<td><strong>Fecha Vencimiento</strong></td>
+							<td><strong>Precio</strong></td>
+							<td><strong>Cantidad</strong></td>
+							<td></td>
+						</tr>
+						<tr ng-repeat="productoM in productos">
+							<td>{{productoM.id}}</td>
+							<td>{{productoM.descripcion}}</td>
+							<td>{{productoM.fecha_ingreso}}</td>
+							<td>{{productoM.fecha_venc}}</td>
+							<td>{{productoM.precio}}</td>
+							<td>{{productoM.cantidad}}</td>
+							<td> 
+								<input type="button" class="btn btn-primary caja" value="Modificar" ng-click="ponerModProd(productoM)"> 
+								<input type="button" class="btn btn-danger caja" value="Eliminar" ng-click="delProd(productoM)">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

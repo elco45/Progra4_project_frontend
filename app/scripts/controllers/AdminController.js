@@ -1,0 +1,231 @@
+angular.module('AngularScaffold.Controllers')
+.controller('AdminController', ['$scope','$state', 'HomeService', function ($scope,$state, HomeService) {
+ $scope.title = "Administrador"
+ $scope.productos = [];
+ $scope.producto = {};
+ $scope.productoM={};
+ $scope.prod={};
+ $scope.search={};
+ $scope.template = '';
+ $scope.user = {};
+ $scope.users  =[];
+ $scope.subarreglo_cantidad =[];
+ $scope.nombre_producto = [];
+ $scope.cantidad_prodcuto =[];
+
+ $scope.getProductos = function(){
+  HomeService.GetProductos().then(function(response){
+    $scope.productos = response.data;
+    $scope.subarreglo_cantidad=[];
+    for (var i = 0; i<$scope.productos.length; i++) {
+     $scope.subarreglo_cantidad.push([$scope.productos[i]["descripcion"],$scope.productos[i]["cantidad"]]);
+     $scope.nombre_producto.push($scope.productos[i]["descripcion"]);
+     $scope.cantidad_prodcuto.push($scope.productos[i]["cantidad"]);
+    };
+     $scope.grafica_producto1();
+     $scope.graficaInventario(); 
+  }).catch(function(err){
+    alert('Error fetching productos')
+  });
+}
+
+$scope.getProductos();
+
+$scope.addProductos = function(){
+  HomeService.PostProductos($scope.producto).then(function(response){
+    $scope.getProductos();
+   }).catch(function(err){
+    alert("Error posting to productos");
+  });
+}
+
+$scope.getUsers =function(){
+  HomeService.GetUsers().then(function(response){
+    $scope.users=response.data;
+  }).catch(function(err){
+    alert('Error fetching users')
+  });
+}
+
+$scope.getUsers();
+
+$scope.delProd=function(object){
+  var newProd = {
+    id : object.id,
+    descripcion : object.descripcion,
+    fecha_ingreso: new Date(object.fecha_ingreso),
+    fecha_venc: new Date(object.fecha_venc),
+    precio: object.precio,
+    cantidad: object.cantidad
+  }
+  console.log(newProd)
+  HomeService.DelProductos(newProd).then(function(response){
+  }).catch(function(err){
+    alert('Error fetching products')
+  });
+}
+
+$scope.delUser=function(object){
+  HomeService.DelUsers(object).then(function(response){
+  }).catch(function(err){
+    alert('Error fetching users')
+    console.log(object)
+  });
+}
+
+$scope.cambiar_div = function(nombre){
+  if (nombre==="vendedor") {
+    $scope.template = '/views/vendedor_admin.html';
+  }else if (nombre==="productos_admin"){
+    $scope.template = '/views/productos_admin.html';
+  }else if (nombre==="productos_riesgo") {
+    $scope.template = '/views/productos_riesgo_admin.html';
+  }else if (nombre==="graficas_ingreso") {
+    $scope.template = '/views/graficas_ingreso.html';
+  }else if (nombre==="graficas_producto") {
+    $scope.template = '/views/grafica_producto.html';
+  };
+}
+
+$scope.goVend=function(){
+  $state.go('vendedor');
+}
+
+$scope.register = function(){
+  var user = {username: $scope.user.username, 
+    password:  $scope.user.password, 
+    ID: $scope.user.ID,
+    nombre: $scope.user.nombre,
+    scope: [$scope.user.scope]};
+    HomeService.Register(user).then(function(response){
+      alert('Registered in correctly!');
+    }).catch(function(err){
+      alert(err.data.error + " " + err.data.message);
+    })
+  }
+
+  $scope.ponerModProd =function(object){
+    $scope.productoM={
+      id : object.id,
+      descripcion : object.descripcion,
+      fecha_ingreso: new Date(object.fecha_ingreso),
+      fecha_venc: new Date(object.fecha_venc),
+      precio: object.precio,
+      cantidad: object.cantidad
+    }
+  }
+
+  $scope.putProd = function(){
+    HomeService.PutProductos($scope.productoM).then(function(response){
+      alert('Modified correctly!');
+    }).catch(function(err){
+      alert(err.data.error + " " + err.data.message);
+    })
+    $scope.getProductos();
+    $scope.productoM={
+      id : "",
+      descripcion : "",
+      fecha_ingreso: "",
+      fecha_venc: "",
+      precio: "",
+      cantidad: ""
+    }
+  }
+
+  /*¨grafica para productos disponibles*/
+  $scope.grafica_producto1 = function () {
+    var serie1 =[["Honduras",10],["Nicaragua",15],["Panama",50]];
+    $('#container1').highcharts({
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Ingresando data a la grafica'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+          }
+        }
+      },
+      series: [{
+        name: "Brands",
+        colorByPoint: true,
+        data:  $scope.subarreglo_cantidad
+      }]
+    });
+  };
+  $scope.grafica_producto1();
+  $scope.graficaInventario = function () {
+    $('#container_inventario').highcharts({
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Control Inventario'
+      },
+      subtitle: {
+        text: 'Productos en Existencia'
+      },
+      xAxis: {
+        categories: $scope.nombre_producto,
+        title: {
+          text: null
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Cantidad (Unidad)',
+          align: 'high'
+        },
+        labels: {
+          overflow: 'justify'
+        }
+      },
+      tooltip: {
+        valueSuffix: ' Unidades'
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: "Cantidad",
+        colorByPoint: true,
+        data: $scope.cantidad_prodcuto
+      }]
+    });
+};
+$scope.graficaInventario(); 
+}]);

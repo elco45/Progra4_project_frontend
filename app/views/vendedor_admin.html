@@ -1,0 +1,51 @@
+<table id="tabla_usuario">
+	<tr>
+		<td><strong>Nombre</strong></td>
+		<td><strong>ID</strong></td>
+		<td><strong>User</strong></td>
+		<td><strong>Contraseña</strong></td>
+		<td><strong>Opcion</strong></td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="Nombre.." class="cajas" ng-model="user.nombre"></td>
+		<td><input type="text" placeholder="ID.." class="cajas" ng-model="user.ID"></td>
+		<td><input type="text" placeholder="User..." class="cajas" ng-model="user.username"></td>
+		<td><input type="password" placeholder="Contraseña" class="cajas" ng-model="user.password"></td>
+		<td>
+			<form>
+				<input type="radio" name="tipo" ng-model="user.scope" value="vendedor" checked> Vendedor
+				<br>
+				<input type="radio" name="tipo" ng-model="user.scope" value="admin"> Admin
+			</form>
+		</td>
+		<td>
+			<input class="btn btn-danger tamano_botones" type="button" value="Agregar" ng-click="register()"> 
+		</td>
+	</tr>
+</table>
+<hr>
+<div class="row">
+	<div class="col-xs-12">
+		<table id="tabla_usuario_mostrar">
+			<tr>
+				<td><strong>Nombre</strong></td>
+				<td><strong>ID</strong></td>
+				<td><strong>User</strong></td>
+				<td><strong>Posición</strong></td>
+			</tr>
+			<tr ng-repeat="user in users">
+				<td>{{user.nombre}}</td>
+				<td>{{user.ID}}</td>
+				<td>{{user.username}}</td>
+				<td>{{user.scope}}</td>
+				<td> 
+					<input type="button" class="btn btn-danger" value="Eliminar" ng-click="delUser(user)">
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+
+

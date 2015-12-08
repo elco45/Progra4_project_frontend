@@ -1,0 +1,107 @@
+<div ng-controller="AdminController" class="container color_panel">
+  <div class="row">
+    <input type="button" ng-click="goVend()" value="Vendedor">
+  </div>
+  <div class="row">
+    <div>
+      <div class="col-md-12 col-xs-12 " id='pestaña1'>
+        <center><h1 class="titulo">CONTROL DE FACTURA</h1></center> 
+        <br>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <p class="texto">Id</p> 
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <p class="texto">Descripción</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <p class="texto">Fecha Ingreso</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+       <input type="text" name="NombreVendedor" ng-model="producto.id">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <input type="text" name="CodigoVendedor" ng-model="producto.descripcion">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <input type="text" name="NombreCliente" ng-model="producto.fecha_ingreso">
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <p class="texto">Fecha Vencimiento</p> 
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <p class="texto">Precio</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <p class="texto">Cantidad</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+       <input type="text" name="NombreVendedor" ng-model="producto.fecha_venc">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 ">
+        <input type="number" name="CodigoVendedor" ng-model="producto.precio">
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-xs-4 " >
+        <input type="number" name="NombreCliente" ng-model="producto.cantidad">
+      </div>
+    </div>  
+    <div class="row">
+    	<div class="col-md-6 col-md-offset-6">
+    		 <input type="button" ng-click="addProductos()" value="Add Producto">
+    	</div>
+    </div>
+    <div class="row">
+      	<hr>
+      	<div class="col-md-6 col-md-offset-6">
+    		 <input type="button" ng-click="getProductos()" value="Get Producto">
+    	</div>
+    </div>  
+  </div>        
+  <br>
+  <br>
+  <div class="table-responsive normal"> 
+    <table class="table table-bordered table-hover table-hover tamaño_tabla">
+      <caption class="colorcabeza">Carrito de Compra</caption>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Descripción</td>
+          <td>Fecha Ingreso</td>
+          <td>Fecha Vencimiento</td>
+          <td>Precio</td>
+          <td>Cantidad</td>
+        </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="producto in productos">
+        <td>
+          {{producto.id}}
+        </td>
+        <td>
+          {{producto.descripcion}}
+        </td>
+        <td>
+          {{producto.fecha_ingreso}}
+        </td>
+        <td>
+          {{producto.fecha_venc}}
+        </td>
+        <td>
+          {{producto.precio}}
+        </td>
+        <td>
+          {{producto.cantidad}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>   
