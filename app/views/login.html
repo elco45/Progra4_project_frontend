@@ -1,22 +1,42 @@
 <div class="content" ng-controller="UsersController">
-    <div class="row">
-        <label class="col-xs-4"></label>
-        <div id="content" class="col-xs-8">
-            <form  >
-                <h1>LOGIN</h1>
-                <div>
-                   <input type="text"  placeholder="INGRESE SU USUARIO..." id="username" ng-model="user.username">
-                </div>
-                <div>
+    <MARQUEE><h1>Deposito Emelina Control de Acceso</h1></MARQUEE>
+    <div class="row" >
+            <label class="col-xs-4"></label>
+            <div id="content" class="col-xs-8 transparente">
+                <form  class="form-horizontal" role="form">
+                    <h1>LOGIN</h1>
+                    <div>
+                       <input type="text"  placeholder="INGRESE SU USUARIO..." id="username" ng-model="user.username">
+                   </div>
+                   <div>
                     <input type="password" placeholder="INGRESE SU CONTRASEÑA..." id="password" required="" ng-model="user.password">
                 </div>
-                 <input type="submit" value="Entrar"  ng-click="login(user)">
+                <input type="submit" value="Entrar"  ng-click="login(user)">
             </form>
             <div class="boton">
                 <p>Bienvenido A Deposito Emelina</p>
             </div>
+
         </div>
     </div>
-</div>
 
+
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">cabesa</h4>
+          </div>
+          <div class="modal-body">
+            <p>Cuerpo</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 

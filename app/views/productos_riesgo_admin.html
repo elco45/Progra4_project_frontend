@@ -1,24 +1,22 @@
 <div class="row">
 	<h1><center>Control de Productos en Riesgo</center></h1>
 	<hr>
-	<table id="taba_venta1" class="taba_v">
-		<tr>
+	<table id="tabla_color" class="table table-bordered table-hover">
+		<tr  class="tabla_color_encabesado">
 			<td><strong>Id</strong></td>
 			<td><strong>Descripcion</strong></td>
 			<td><strong>Fecha Ingreso</strong></td>
 			<td><strong>Fecha Vencimiento</strong></td>
 			<td><strong>Precio</strong></td>
 			<td><strong>Cantidad</strong></td>
-			<td><strong> Opcion</strong></td>
 		</tr>
-		<tr>
-			<td><input type="text" placeholder="ID" class="cajas"></td>
-			<td><input type="text" placeholder="Descripcion" class="cajas"></td>
-			<td><input type="text" placeholder="Fecha Ingreso" class="cajas"></td>
-			<td><input type="text" placeholder="Fecha Vencimiento" class="cajas"></td>
-			<td><input type="text" placeholder="Precio" class="cajas"></td>
-			<td><input type="text" placeholder="Cantidad" class="cajas"></td>
-			<td> <input type="button" class="btn btn-danger caja" value="Modificar"></td>
+		<tr ng-repeat="riesgo in productos_en_riesgo" class="warning">
+			<td>{{riesgo.id}}</td>
+			<td>{{riesgo.descripcion}}</td>
+			<td>{{riesgo.fecha_ingreso}}</td>
+			<td>{{riesgo.fecha_venc}}</td>
+			<td>{{riesgo.precio}}</td>
+			<td>{{riesgo.cantidad}}</td>
 		</tr>
 	</table>
 </div>

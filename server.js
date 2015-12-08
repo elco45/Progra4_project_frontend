@@ -7,7 +7,6 @@ server.connection({
 });
 
 server.register(inert, function(err){
-
 	server.route(
       [{method: 'GET',
       path: '/{param*}',

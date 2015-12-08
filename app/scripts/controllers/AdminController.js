@@ -1,3 +1,5 @@
+
+
 angular.module('AngularScaffold.Controllers')
 .controller('AdminController', ['$scope','$state', 'HomeService', function ($scope,$state, HomeService) {
  $scope.title = "Administrador"
@@ -12,15 +14,22 @@ angular.module('AngularScaffold.Controllers')
  $scope.subarreglo_cantidad =[];
  $scope.nombre_producto = [];
  $scope.cantidad_prodcuto =[];
-
+$scope.productos_en_riesgo = [];
  $scope.getProductos = function(){
   HomeService.GetProductos().then(function(response){
     $scope.productos = response.data;
     $scope.subarreglo_cantidad=[];
+    $scope.nombre_producto = [];
+     $scope.cantidad_prodcuto =[];
+     $scope.productos_en_riesgo = [];
     for (var i = 0; i<$scope.productos.length; i++) {
      $scope.subarreglo_cantidad.push([$scope.productos[i]["descripcion"],$scope.productos[i]["cantidad"]]);
      $scope.nombre_producto.push($scope.productos[i]["descripcion"]);
      $scope.cantidad_prodcuto.push($scope.productos[i]["cantidad"]);
+      var dias_restantes =Math.abs( $scope.calcular_fecha($scope.productos[i]["fecha_venc"]));
+       if (  dias_restantes <= 20 ) {
+           $scope.productos_en_riesgo.push($scope.productos[i]);
+       };
     };
      $scope.grafica_producto1();
      $scope.graficaInventario(); 
@@ -228,4 +237,16 @@ $scope.register = function(){
     });
 };
 $scope.graficaInventario(); 
+$scope.calcular_fecha = function(fecha){
+       var f1=fecha;
+       var fecha_actual = new  Date();
+       var f2=fecha_actual.getFullYear()+"-"+(fecha_actual.getMonth()+1)+"-"+fecha_actual.getDate();
+       var aFecha1 = f1.split('-'); 
+       var aFecha2 = f2.split('-');
+       var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]); 
+       var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]); 
+       var dif = fFecha2 - fFecha1;
+       var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+       return dias;
+}
 }]);

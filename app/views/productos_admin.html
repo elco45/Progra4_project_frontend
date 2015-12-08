@@ -12,42 +12,44 @@
 				<hr>
 				<div class="row">
 					<div class="col-md-6">
-						<div class="row">
-							<label class="col-md-3 ">ID: </label> 
-							<input type="text" class="texto col-md-6" ng-model="producto.id">
-							<label class="col-md-3"></label>
-						</div>
-
-						<div class="row">
-							<label class="col-md-3 ">Descripcion: </label> 
-							<input type="text" class="texto col-md-6" ng-model="producto.descripcion">
-							<label class="col-md-3"></label>
-						</div>
-						<div class="row">
-							<label class="col-md-3 ">Fecha de Ingreso: </label> 
-							<input type="date" class="texto col-md-6" ng-model="producto.fecha_ingreso">
-							<label class="col-md-3"></label>
-						</div>
-						<div class="row">
-							<label class="col-md-3 ">Fecha de vencimiento 1: </label>
-							
-							<input type="date" class="texto col-md-6" ng-model="producto.fecha_venc" >
-							<label class="col-md-3"></label>
-						</div>
-						<div class="row">
-							<label class="col-md-3 ">Precio: </label> 
-							 <input type="number" class="texto col-md-6" ng-model="producto.precio">
-							<label class="col-md-3"></label>
-						</div>
-						<div class="row">
-							<label class="col-md-3 ">Cantidad: </label> 
-							<input type="number" class="texto col-md-6" ng-model="producto.cantidad">
-							<label class="col-md-3"></label>
-						</div>
+						<table id="tabla_color" class="table table-bordered table-hover">
+							<tr class="tabla_color_encabesado">
+								<td>Descripcion</td>
+								<td>Datos</td>
+							</tr>
+							<tr>
+								<td>ID</td>
+								<td><input type="text"  ng-model="producto.id"></td>
+							</tr>
+							<tr>
+								<td>Descripcion</td>
+								<td><input type="text"  ng-model="producto.descripcion"></td>
+							</tr>
+							<tr>
+								<td>Fecha Ingreso</td>
+								<td><input type="date" class="texto" ng-model="producto.fecha_ingreso"></td>
+							</tr>
+							<tr>
+								<td>Fecha Vencimiento</td>
+								<td><input type="date" class="texto" ng-model="producto.fecha_venc" ></td>
+							</tr>
+							<tr>
+								<td>Precio</td>
+								<td><input type="number"  ng-model="producto.precio"></td>
+							</tr>
+							<tr>
+							<td>Cantidad</td>
+								<td><input type="number"  ng-model="producto.cantidad"></td>
+							</tr>
+							<tr>
+								<td>Opcion</td>
+								<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
+							</tr>
+						</table>
 					</div>
 					<div class="col-md-6 tabla_crear">
-						<table id="taba_venta" class="taba_v">
-							<tr>
+						<table id="tabla_color" class="table table-bordered table-hover">
+							<tr class="tabla_color_encabesado">
 								<td><strong>Id</strong></td>
 								<td><strong>Descripción</strong></td>
 								<td><strong>Fecha Ing</strong></td>
@@ -67,39 +69,62 @@
 						</table>
 					</div>
 				</div>
-				<div>
-					<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
-				</div>
 			</div>
 
 			<div class="tab-pane fade" id="modificarProduct">
-				<br>
-				<div class="row">
-					<table id="taba_venta1" class="taba_v">
-						<tr>
-							<td><strong>Id</strong></td>
-							<td><strong>Descripcion</strong></td>
-							<td><strong>Fecha Ingreso</strong></td>
-							<td><strong>Fecha Vencimiento</strong></td>
-							<td><strong>Precio</strong></td>
-							<td><strong>Cantidad</strong></td>
-							<td><strong> Opcion</strong></td>
-						</tr>
-						<tr>
-							<td><input type="text" placeholder="ID" class="cajas" ng-model="productoM.id"></td>
-							<td><input type="text" placeholder="Descripcion" class="cajas" ng-model="productoM.descripcion"></td>
-							<td><input type="date" placeholder="Fecha Ingreso" class="cajas" ng-model="productoM.fecha_ingreso"></td>
-							<td><input type="date" placeholder="Fecha Vencimiento" class="cajas" ng-model="productoM.fecha_venc"></td>
-							<td><input type="text" placeholder="Precio" class="cajas" ng-model="productoM.precio"></td>
-							<td><input type="text" placeholder="Cantidad" class="cajas" ng-model="productoM.cantidad"></td>
-							<td> <input type="button" class="btn btn-danger caja" value="Modificar" ng-click="putProd()"></td>
-						</tr>
-					</table>
-				</div>
+				  <div id="myModal" class="modal fade" role="dialog">
+			      <div class="modal-dialog modal-lg">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h4 class="modal-title">Formulario de llenado</h4>
+			          </div>
+			          <div class="modal-body">
+			           			<table id="tabla_color" class="table table-bordered table-hover">
+									<tr class="tabla_color_encabesado">
+										<td><strong>Datos</strong></td>
+										<td><strong>Input</strong></td>
+									</tr>
+									<tr>
+										<td>ID</td>
+										<td><input type="text" placeholder="ID" class="cajas" ng-model="productoM.id"></td>
+									</tr>
+									<tr>
+										<td><strong>Descripcion</strong></td>
+										<td><input type="text" placeholder="Descripcion" class="cajas" ng-model="productoM.descripcion"></td>
+									</tr>
+									<tr>
+										<td><strong>Fecha Ingreso</strong></td>
+										<td><input type="date" placeholder="Fecha Ingreso" class="cajas" ng-model="productoM.fecha_ingreso"></td>
+									</tr>
+									<tr>
+										<td><strong>Fecha Vencimiento</strong></td>
+										<td><input type="date" placeholder="Fecha Vencimiento" class="cajas" ng-model="productoM.fecha_venc"></td>
+									</tr>
+									<tr>
+										<td><strong>Precio</strong></td>
+										<td><input type="text" placeholder="Precio" class="cajas" ng-model="productoM.precio"></td>
+							 		</tr>
+							 		<tr>
+							 			<td><strong>Cantidad</strong></td>
+							 			<td><input type="text" placeholder="Cantidad" class="cajas" ng-model="productoM.cantidad"></td>
+							 		</tr>
+							 		<tr>
+							 			<td><strong> Opcion</strong></td>
+							 			<td> <input type="button" class="btn btn-danger caja" value="Modificar" data-dismiss="modal" ng-click="putProd()"></td>
+							 		</tr>
+								</table>
+			          </div>
+			          <div class="modal-footer">
+			           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
 				<hr>
 				<div class="row">
-					<table  class="tr1">
-						<tr >
+					<table  id="tabla_color" class="table table-bordered table-hover">
+						<tr class="tabla_color_encabesado">
 							<td><strong>Id</strong></td>
 							<td><strong>Descripción</strong></td>
 							<td><strong>Fecha Ingreso</strong></td>
@@ -116,7 +141,7 @@
 							<td>{{productoM.precio}}</td>
 							<td>{{productoM.cantidad}}</td>
 							<td> 
-								<input type="button" class="btn btn-primary caja" value="Modificar" ng-click="ponerModProd(productoM)"> 
+								<input type="button" class="btn btn-primary caja" value="Modificar" data-toggle="modal" data-target="#myModal" ng-click="ponerModProd(productoM)"> 
 								<input type="button" class="btn btn-danger caja" value="Eliminar" ng-click="delProd(productoM)">
 							</td>
 						</tr>
@@ -125,4 +150,5 @@
 			</div>
 		</div>
 	</div>
+	
 </div>
