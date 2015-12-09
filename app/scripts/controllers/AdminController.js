@@ -59,27 +59,22 @@ $scope.getUsers =function(){
 $scope.getUsers();
 
 $scope.delProd=function(object){
-  var newProd = {
-    id : object.id,
-    descripcion : object.descripcion,
-    fecha_ingreso: new Date(object.fecha_ingreso),
-    fecha_venc: new Date(object.fecha_venc),
-    precio: object.precio,
-    cantidad: object.cantidad
-  }
-  console.log(newProd)
-  HomeService.DelProductos(newProd).then(function(response){
+  HomeService.DelProductos(object.id).then(function(response){
+    
   }).catch(function(err){
     alert('Error fetching products')
   });
+  $scope.getProductos();
 }
 
 $scope.delUser=function(object){
-  HomeService.DelUsers(object).then(function(response){
+  HomeService.DelUsers(object.username).then(function(response){
+    
   }).catch(function(err){
     alert('Error fetching users')
     console.log(object)
   });
+  $scope.getUsers();
 }
 
 $scope.cambiar_div = function(nombre){
