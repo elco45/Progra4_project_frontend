@@ -288,6 +288,7 @@ body{
 }
 ul, ol{
 	list-style: none;
+
 }
 .nav li a{
 	background: black;
@@ -295,20 +296,19 @@ ul, ol{
 	text-decoration: none;
 	padding: 10px 20px;
 	display: block;
-
 }
 .nav >li{
 	float: left;
+
 }
-.nav li a:hover{
-	background-color: #434343;
+.nav:hover li a:hover{
+	background-color: grey;
 }
 
 .nav li ul{
 	display:none;
 	position: absolute;
 	min-width: 100px; 
-	
 }
 .nav li:hover > ul{
 	display: block;
@@ -320,6 +320,12 @@ ul, ol{
 .nav li ul li ul{
 	right: -100px;
 	top: 0px;
+}
+.nav_color_negro{
+	background-color: black;
+}
+.logout {
+	background-color: red !important;
 }
 
 

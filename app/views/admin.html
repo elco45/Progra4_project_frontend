@@ -2,31 +2,41 @@
   <div class="row">
     <input type="button" ng-click="goVend()" value="Vendedor">
   </div>
-  <div class="row">
-    <div class="col-md-9 col-md-offset-3">
-      <ul class = "nav">
-        <li><a href="">GRAFICAS</a>
-          <ul>
-           <a href="" ng-click="cambiar_div('graficas_ingreso')">INGRESO</a>
-           <a href="" ng-click="cambiar_div('graficas_producto')">PRODUCTOS</a>
+  <div class="">
+    <div class="nav_color_negro row">
+      <div class="col-xs-8">
+          <ul class = "nav">
+            <li><a href="">GRAFICAS</a>
+              <ul>
+               <a href="" ng-click="cambiar_div('graficas_ingreso')">INGRESO</a>
+               <a href="" ng-click="cambiar_div('graficas_producto')">PRODUCTOS</a>
+              </ul>
+            </li>
+            <li><a href="">MANEJO DE PRODUCTO</a>
+              <ul>
+               <a href="" ng-click="cambiar_div('productos_admin')">ADMINISTRAR</a>
+              </ul>
+            </li>
+            <li><a href="">PRODUCTOR EN RIESGO</a>
+              <ul>
+                <a href="" ng-click="cambiar_div('productos_riesgo')">VER</a>
+              </ul>
+            </li>
+            <li><a href="">USUARIOS</a>
+              <ul>
+               <a href="" ng-click="cambiar_div('vendedor')">ADMINISTRARAR</a>
+              </ul>
+            </li>
           </ul>
-        </li>
-        <li><a href="">MANEJO DE PRODUCTO</a>
-          <ul>
-           <a href="" ng-click="cambiar_div('productos_admin')">ADMINISTRAR</a>
-          </ul>
-        </li>
-        <li><a href="">PRODUCTOR EN RIESGO</a>
-          <ul>
-            <a href="" ng-click="cambiar_div('productos_riesgo')">VER</a>
-          </ul>
-        </li>
-        <li><a href="">USUARIOS</a>
-          <ul>
-           <a href="" ng-click="cambiar_div('vendedor')">ADMINISTRARAR</a>
-          </ul>
-        </li>
-      </ul>
+       </div>
+       <div class="col-xs-offset-3 col-xs-1">
+            <ul class = "nav logout">
+              <li >
+                <a href="">LOGOUT</a>
+              </li>
+            </ul>
+            
+          </div>
     </div>
     <hr>
     <hr>

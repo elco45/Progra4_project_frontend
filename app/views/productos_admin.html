@@ -41,10 +41,12 @@
 							<td>Cantidad</td>
 								<td><input type="number"  ng-model="producto.cantidad"></td>
 							</tr>
-							<tr>
-								<td>Opcion</td>
-								<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
+							<tr >
+								<td colspan="2">
+									<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
+								</td>
 							</tr>
+
 						</table>
 					</div>
 					<div class="col-md-6 tabla_crear">
@@ -109,15 +111,15 @@
 							 			<td><strong>Cantidad</strong></td>
 							 			<td><input type="text" placeholder="Cantidad" class="cajas" ng-model="productoM.cantidad"></td>
 							 		</tr>
-							 		<tr>
-							 			<td><strong> Opcion</strong></td>
-							 			<td> <input type="button" class="btn btn-danger caja" value="Modificar" data-dismiss="modal" ng-click="putProd()"></td>
-							 		</tr>
+							 		<tr >
+										<td colspan="2">
+											 <input type="button" class="btn btn-primary caja" value="Modificar" data-dismiss="modal" ng-click="putProd()">
+											 <button type="button" class="btn btn-danger caja" data-dismiss="modal">Cerrar</button>
+										</td>
+									</tr>
 								</table>
 			          </div>
-			          <div class="modal-footer">
-			           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			          </div>
+			         
 			        </div>
 			      </div>
 			    </div>
