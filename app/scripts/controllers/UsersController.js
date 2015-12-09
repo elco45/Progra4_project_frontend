@@ -5,9 +5,11 @@ angular.module('AngularScaffold.Controllers')
       $scope.$sessionStorage = $sessionStorage;
       $scope.title = "Login"
 
+
       $scope.logout = function(){
         authService.Logout().then(function(response){
           alert('logged out correctly');
+          $state.go("login");
           $sessionStorage.$reset();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
