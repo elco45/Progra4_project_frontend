@@ -11,7 +11,7 @@
 			<div class="tab-pane fade active in" id="agregarProduct">
 				<hr>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6 " >
 						<table id="tabla_color" class="table table-bordered table-hover">
 							<tr class="tabla_color_encabesado">
 								<td>Descripcion</td>
@@ -41,6 +41,7 @@
 							<td>Cantidad</td>
 								<td><input type="number"  ng-model="producto.cantidad"></td>
 							</tr>
+
 							<tr >
 								<td colspan="2">
 									<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
@@ -48,6 +49,7 @@
 							</tr>
 
 						</table>
+							
 					</div>
 					<div class="col-md-6 tabla_crear">
 						<table id="tabla_color" class="table table-bordered table-hover">
@@ -73,13 +75,13 @@
 				</div>
 			</div>
 
-			<div class="tab-pane " id="modificarProduct">
+			<div class="tab-pane fade" id="modificarProduct">
 				  <div id="myModal" class="modal fade" role="dialog">
 			      <div class="modal-dialog modal-lg">
 			        <div class="modal-content">
 			          <div class="modal-header">
 			            <button type="button" class="close" data-dismiss="modal">&times;</button>
-			            <h4 class="modal-title">Formulario de llenado</h4>
+			            <h4 class="modal-title">Modificación de Productos</h4>
 			          </div>
 			          <div class="modal-body">
 			           			<table id="tabla_color" class="table table-bordered table-hover">
@@ -111,15 +113,15 @@
 							 			<td><strong>Cantidad</strong></td>
 							 			<td><input type="text" placeholder="Cantidad" class="cajas" ng-model="productoM.cantidad"></td>
 							 		</tr>
+							 		
 							 		<tr >
 										<td colspan="2">
 											 <input type="button" class="btn btn-primary caja" value="Modificar" data-dismiss="modal" ng-click="putProd()">
 											 <button type="button" class="btn btn-danger caja" data-dismiss="modal">Cerrar</button>
 										</td>
 									</tr>
-								</table>
+							 	</table>
 			          </div>
-			         
 			        </div>
 			      </div>
 			    </div>
@@ -143,7 +145,7 @@
 							<td>{{productoM.precio}}</td>
 							<td>{{productoM.cantidad}}</td>
 							<td> 
-								<input type="button" class="btn btn-primary caja" value="Modificar" data-toggle="modal" data-target="#myModal"  ng-click="ponerModProd(productoM)"> 
+								<input type="button" class="btn btn-primary caja" value="Modificar" data-toggle="modal" data-target="#myModal" ng-click="ponerModProd(productoM)"> 
 								<input type="button" class="btn btn-danger caja" value="Eliminar" ng-click="delProd(productoM)">
 							</td>
 						</tr>

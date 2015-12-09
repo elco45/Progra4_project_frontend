@@ -46,6 +46,10 @@ form:after {
 	visibility: hidden;
 }
 .container { margin: 25px auto; position: relative; width: 900px; }
+.centrar{
+	position: relative;
+	margin-top: 15%;
+}
 #content {
 	background: #f9f9f9;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
@@ -332,12 +336,12 @@ ul, ol{
 
 
 
-
 /*Estilo de las tablas*/
 #tabla_color{
    background-color: white;
    text-align: center;
 }
+
 .tabla_color_encabesado{
 	background-color: #E8ABF5;
 }
@@ -406,4 +410,8 @@ ul, ol{
   width: 300px;
   background: #CCC
 }
+
+
+
+/*estilo de graficas*/
 
