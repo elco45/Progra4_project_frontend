@@ -1,35 +1,34 @@
-
-
 angular.module('AngularScaffold.Controllers')
 .controller('AdminController', ['$scope','$state', 'HomeService', function ($scope,$state, HomeService) {
- $scope.title = "Administrador"
- $scope.productos = [];
- $scope.producto = {};
- $scope.productoM={};
- $scope.prod={};
- $scope.search={};
- $scope.template = '';
- $scope.user = {};
- $scope.users  =[];
- $scope.subarreglo_cantidad =[];
- $scope.nombre_producto = [];
- $scope.cantidad_prodcuto =[];
-$scope.productos_en_riesgo = [];
+  $scope.title = "Administrador"
+  $scope.productos = [];
+  $scope.producto = {};
+  $scope.productoM={};
+  $scope.prod={};
+  $scope.search={};
+  $scope.template = '';
+  $scope.user = {};
+  $scope.users  =[];
+  $scope.subarreglo_cantidad =[];
+  $scope.nombre_producto = [];
+  $scope.cantidad_prodcuto =[];
+  $scope.productos_en_riesgo = [];
+
  $scope.getProductos = function(){
   HomeService.GetProductos().then(function(response){
     $scope.productos = response.data;
     $scope.subarreglo_cantidad=[];
     $scope.nombre_producto = [];
-     $scope.cantidad_prodcuto =[];
-     $scope.productos_en_riesgo = [];
+    $scope.cantidad_prodcuto =[];
+    $scope.productos_en_riesgo = [];
     for (var i = 0; i<$scope.productos.length; i++) {
-     $scope.subarreglo_cantidad.push([$scope.productos[i]["descripcion"],$scope.productos[i]["cantidad"]]);
-     $scope.nombre_producto.push($scope.productos[i]["descripcion"]);
-     $scope.cantidad_prodcuto.push($scope.productos[i]["cantidad"]);
+      $scope.subarreglo_cantidad.push([$scope.productos[i]["descripcion"],$scope.productos[i]["cantidad"]]);
+      $scope.nombre_producto.push($scope.productos[i]["descripcion"]);
+      $scope.cantidad_prodcuto.push($scope.productos[i]["cantidad"]);
       var dias_restantes =Math.abs( $scope.calcular_fecha($scope.productos[i]["fecha_venc"]));
-       if (  dias_restantes <= 20 ) {
-           $scope.productos_en_riesgo.push($scope.productos[i]);
-       };
+        if (  dias_restantes <= 20 ) {
+          $scope.productos_en_riesgo.push($scope.productos[i]);
+        };
     };
      $scope.grafica_producto1();
      $scope.graficaInventario(); 
@@ -59,22 +58,27 @@ $scope.getUsers =function(){
 $scope.getUsers();
 
 $scope.delProd=function(object){
-  HomeService.DelProductos(object.id).then(function(response){
-    
+  var newProd = {
+    id : object.id,
+    descripcion : object.descripcion,
+    fecha_ingreso: new Date(object.fecha_ingreso),
+    fecha_venc: new Date(object.fecha_venc),
+    precio: object.precio,
+    cantidad: object.cantidad
+  }
+  console.log(newProd)
+  HomeService.DelProductos(newProd).then(function(response){
   }).catch(function(err){
     alert('Error fetching products')
   });
-  $scope.getProductos();
 }
 
 $scope.delUser=function(object){
-  HomeService.DelUsers(object.username).then(function(response){
-    
+  HomeService.DelUsers(object).then(function(response){
   }).catch(function(err){
     alert('Error fetching users')
     console.log(object)
   });
-  $scope.getUsers();
 }
 
 $scope.cambiar_div = function(nombre){

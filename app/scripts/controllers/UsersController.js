@@ -5,11 +5,8 @@ angular.module('AngularScaffold.Controllers')
       $scope.$sessionStorage = $sessionStorage;
       $scope.title = "Login"
 
-
       $scope.logout = function(){
         authService.Logout().then(function(response){
-          alert('logged out correctly');
-          $state.go("login");
           $sessionStorage.$reset();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
@@ -22,7 +19,6 @@ angular.module('AngularScaffold.Controllers')
           console.log($sessionStorage.currentUser);
           $scope.user = {};
           if ($sessionStorage.currentUser.scope[0]==="admin") {
-            console.log("hjasdhadkjanka");
             $state.go('admin');
           }else if($sessionStorage.currentUser.scope[0]==="vendedor"){
             $state.go('vendedor');

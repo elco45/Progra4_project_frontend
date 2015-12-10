@@ -26,11 +26,11 @@ angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 		    PutProductos: function(payload){
 				return $http.put(baseUrl+"v1/modprod",payload);
 			},
-			DelProductos: function(id){
-				return $http.delete(baseUrl+"v1/delprod/"+id);
+			DelProductos: function(payload){
+				return $http.delete(baseUrl+"v1/delprod",payload);
 			},
-			DelUsers: function(username){
-				return $http.delete(baseUrl+"v1/deluser/"+username);
+			DelUsers: function(payload){
+				return $http.delete(baseUrl+"v1/deluser",payload);
 			}
 	    };
 }]);
