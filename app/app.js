@@ -21,7 +21,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         .state('admin', {
             url: '/admin',
             params: {content:undefined},
-            templateUrl: '/views/admin.html',
+            templateUrl: '/views/admin2.html',
             controller: 'AdminController'
         });   
 }])

@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'https://bodega-emelina-backend.herokuapp.com/';
+		var baseUrl = 'https://localhost:8000/';
 		return {
 			AddFactura: function(payload){
 				return $http.post(baseUrl + "v1/linea_fact",payload);
