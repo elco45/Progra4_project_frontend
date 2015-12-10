@@ -22,11 +22,13 @@
     "tests"
   ],
   "dependencies": {
+  	"font-awesome"
     "bootstrap": "~3.3.5",
     "angular": "~1.4.7",
     "angular-ui-router": "~0.2.15",
     "gulp": "~3.9.0",
     "bootstrap-css": "~3.3.4",
     "ngstorage": "~0.3.10"
+
   }
 }

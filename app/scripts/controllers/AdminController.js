@@ -62,6 +62,7 @@ $scope.delProd=function(object){
   }).catch(function(err){
     alert('Error fetching products')
   });
+  $scope.getProductos();
 }
 
 $scope.delUser=function(object){
@@ -70,6 +71,7 @@ $scope.delUser=function(object){
     alert('Error fetching users')
     console.log(object)
   });
+  $scope.getUsers();
 }
 
 $scope.cambiar_div = function(nombre){
@@ -91,7 +93,8 @@ $scope.goVend=function(){
 }
 
 $scope.register = function(){
-  var user = {username: $scope.user.username, 
+  var user = {
+  	username: $scope.user.username, 
     password:  $scope.user.password, 
     ID: $scope.user.ID,
     nombre: $scope.user.nombre,
@@ -101,6 +104,12 @@ $scope.register = function(){
     }).catch(function(err){
       alert(err.data.error + " " + err.data.message);
     })
+    $scope.user={
+  	username: "", 
+    password:  "", 
+    ID: "",
+    nombre: "",
+    scope: [""]};
   }
 
   $scope.ponerModProd =function(object){
