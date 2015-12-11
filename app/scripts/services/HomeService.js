@@ -31,7 +31,7 @@ angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 			},
 			DelUsers: function(username){
 				return $http.delete(baseUrl+"v1/deluser/"+username);
-			}
+			},
 			AddIngreso: function(payload){
 				return $http.post(baseUrl+"v1/ingreso",payload);
 			}
