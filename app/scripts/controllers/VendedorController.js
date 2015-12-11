@@ -37,6 +37,7 @@ angular.module('AngularScaffold.Controllers')
                   total: $scope.producto.precio*$scope.lf_cantidad
                 }
                 $scope.factura.push($scope.linea_factura);
+
                 $scope.tot=0;
                 for(var i = 0; i < $scope.factura.length; i++) {
                   $scope.tot+=$scope.factura[i]['total'];
@@ -76,6 +77,7 @@ angular.module('AngularScaffold.Controllers')
           HomeService.Facturar($scope.factura[i]).then(function(response){
           });  
         }
+         $scope.crearTotal();
         window.print();
         $scope.factura=[];
         $('#sub').val("");
@@ -126,7 +128,7 @@ angular.module('AngularScaffold.Controllers')
             }
         }
       }
-      function crearTotal(event){
+      $scope.crearTotal =function(){
 
          HomeService.AddIngreso($scope.tot).then(function(response){
 
