@@ -9,6 +9,7 @@
 			<td><strong>Fecha Vencimiento</strong></td>
 			<td><strong>Precio</strong></td>
 			<td><strong>Cantidad</strong></td>
+			<td></td>
 		</tr>
 		<tr ng-repeat="riesgo in productos_en_riesgo" class="warning">
 			<td>{{riesgo.id}}</td>
@@ -17,6 +18,9 @@
 			<td>{{riesgo.fecha_venc}}</td>
 			<td>{{riesgo.precio}}</td>
 			<td>{{riesgo.cantidad}}</td>
+			<td>
+				<input class="btn btn-danger tamano_botones" type="button" value="X" > 
+			</td>
 		</tr>
 	</table>
 </div>
