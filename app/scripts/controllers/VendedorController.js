@@ -6,6 +6,7 @@ angular.module('AngularScaffold.Controllers')
       $scope.producto={};
       $scope.search={};
       $scope.lf_cantidad=1;
+      $scope.tot;
 
       $scope.goAdmin=function(){
         $state.go('admin');
@@ -124,6 +125,14 @@ angular.module('AngularScaffold.Controllers')
                 return i;
             }
         }
+      }
+      function crearTotal(event){
+
+         HomeService.AddIngreso($scope.tot).then(function(response){
+
+         }).catch(function(err){
+          alert('No existe en la base de datos')
+        });
       }
       
 }]);
