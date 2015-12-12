@@ -329,8 +329,7 @@ $scope.calcular_fecha = function(fecha){
 
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
-    console.log("entro ")
-    $scope.fechas= response.data;
+     $scope.fechas= response.data;
     var fechaInicial=$scope.fecha_ingreso.inicial;
     var fechaFinal=$scope.fecha_ingreso.final;
 
@@ -361,7 +360,7 @@ $scope.getIngresos = function(){
         $scope.ingresofecha.push($scope.arrIngreso[i].fecha)
       }
   }
-  for (var i = 0; i < $scope.ingresofecha; i++) {
+  for (var i = 0; i < $scope.ingresofecha.length; i++) {
     $scope.Ingresovalor.push(0);
   };
   for (var i =0; i <$scope.arrIngreso.length; i++) {
