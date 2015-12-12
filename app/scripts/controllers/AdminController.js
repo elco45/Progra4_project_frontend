@@ -240,7 +240,7 @@ angular.module('AngularScaffold.Controllers')
       }]
     });
 };
-/*
+
 $scope.grafica_de_ingreso = function(){
 
   $('#grafica_ingresos').highcharts({
@@ -248,7 +248,7 @@ $scope.grafica_de_ingreso = function(){
       text: 'Combination chart'
     },
     xAxis: {
-      categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+      categories: $scope.ingresofecha
     },
     labels: {
       items: [{
@@ -310,7 +310,6 @@ $scope.grafica_de_ingreso = function(){
 
 
 }
-*/
 $scope.graficaInventario(); 
 $scope.calcular_fecha = function(fecha){
  var f1=fecha;
@@ -329,21 +328,21 @@ $scope.calcular_fecha = function(fecha){
 
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
-     $scope.fechas= response.data;
-    var fechaInicial=$scope.fecha_ingreso.inicial;
-    var fechaFinal=$scope.fecha_ingreso.final;
+   $scope.fechas= response.data;
+   var fechaInicial=$scope.fecha_ingreso.inicial;
+   var fechaFinal=$scope.fecha_ingreso.final;
 
-    var fi=fechaInicial.getFullYear()+"-"+(fechaInicial.getMonth()+1)+"-"+fechaInicial.getDate();
-    var ff=fechaFinal.getFullYear()+"-"+(fechaFinal.getMonth()+1)+"-"+fechaFinal.getDate();
+   var fi=fechaInicial.getFullYear()+"-"+(fechaInicial.getMonth()+1)+"-"+fechaInicial.getDate();
+   var ff=fechaFinal.getFullYear()+"-"+(fechaFinal.getMonth()+1)+"-"+fechaFinal.getDate();
 
-    var fechaI = fi.split('-'); 
-    var  fechaF = ff.split('-');
+   var fechaI = fi.split('-'); 
+   var  fechaF = ff.split('-');
 
-    var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
-    var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
+   var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
+   var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
 
-    $scope.arrIngreso=[];
-    for (var i = 0; i <$scope.fechas.length; i++) {
+   $scope.arrIngreso=[];
+   for (var i = 0; i <$scope.fechas.length; i++) {
 
      var ft = $scope.fechas[i].fecha; 
      console.log(ft)
@@ -356,22 +355,23 @@ $scope.getIngresos = function(){
   };
   console.log($scope.arrIngreso)  
   for (var i =0; i <$scope.arrIngreso.length; i++) {
-      if($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)==-1){
-        $scope.ingresofecha.push($scope.arrIngreso[i].fecha)
-      }
+    if($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)==-1){
+      $scope.ingresofecha.push($scope.arrIngreso[i].fecha)
+    }
   }
   for (var i = 0; i < $scope.ingresofecha.length; i++) {
     $scope.Ingresovalor.push(0);
   };
   for (var i =0; i <$scope.arrIngreso.length; i++) {
-    
-      if ($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)!=-1) {
-        $scope.Ingresovalor[$scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)]+=$scope.arrIngreso[i].total;
-      }
+
+    if ($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)!=-1) {
+      $scope.Ingresovalor[$scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)]+=$scope.arrIngreso[i].total;
+    }
     
   }
   console.log($scope.ingresofecha);
   console.log($scope.Ingresovalor);
+  $scope.grafica_de_ingreso();
 }).catch(function(err){
   alert('Error fetching productos')
 });
