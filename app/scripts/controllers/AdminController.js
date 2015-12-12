@@ -368,6 +368,8 @@ $scope.getIngresos = function(){
     for (var j = 0; j < $scope.ingresofecha.length; j++) {
       if ($scope.arrIngreso[i].fecha===$scope.ingresofecha[j].fecha) {
         $scope.Ingresovalor[j]+=$scope.arrIngreso[i].total;
+        console.log("entre 2");
+        break;
       }
     };
   }
