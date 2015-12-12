@@ -273,7 +273,7 @@ $scope.getIngresos = function(){
        $scope.arrIngreso=[];
       for (var i = 0; i <$scope.fechas.length; i++) {
 
-           var ft = $scope.fechas[i]; 
+           var ft = $scope.fechas[i].fecha; 
            console.log(ft)
            var fecha_tabla=ft.split('-')
            var valor= Date.UTC(fecha_tabla[0],fecha_tabla[1]-1,fecha_tabla[2]); 
