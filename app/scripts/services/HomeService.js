@@ -34,6 +34,10 @@ angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 			},
 			AddIngreso: function(payload){
 				return $http.post(baseUrl+"v1/ingreso",payload);
-			}
+			},
+			GetIngresos: function(){
+				console.log("DDDDDDDDDddd");
+				return $http.get(baseUrl+"v1/getTIngreso");
+			} 
 	    };
 }]);

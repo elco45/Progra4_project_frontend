@@ -1,4 +1,7 @@
 <div ng-controller="AdminController">
 	<h1><center>DEPOSITO EMELINA</center></h1>
+	<input type="Date" ng-model="fecha_ingreso.inicial">
+	<input type="Date" ng-model="fecha_ingreso.final">
+	<button ng-click="getIngresos()">Gernerar Grafica</button>
         <div id="container1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 </div>

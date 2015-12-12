@@ -13,6 +13,8 @@ angular.module('AngularScaffold.Controllers')
   $scope.nombre_producto = [];
   $scope.cantidad_prodcuto =[];
   $scope.productos_en_riesgo = [];
+  $scope.fecha_ingreso={};
+  $scope.arrIngreso=[];
 
  $scope.getProductos = function(){
   HomeService.GetProductos().then(function(response){
@@ -242,10 +244,40 @@ $scope.calcular_fecha = function(fecha){
        var f2=fecha_actual.getFullYear()+"-"+(fecha_actual.getMonth()+1)+"-"+fecha_actual.getDate();
        var aFecha1 = f1.split('-'); 
        var aFecha2 = f2.split('-');
+
        var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]); 
        var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]); 
+
        var dif = fFecha2 - fFecha1;
        var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
        return dias;
 }
+/*
+$scope.getIngresos = function(){
+  HomeService.GetIngresos().then(function(response){
+      $scope.fechas= response.data;
+      var I=$scope.fecha_ingreso.inicial;
+      console.log(I)
+       var fechaI = I.split('-'); 
+       var  fechaF = $scope.fecha_ingreso.final.split('-');
+       var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
+       var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
+        $scope.arrIngreso=[];
+      for (var i = 0; i <$scope.fechas.length(); i++) {
+
+           var fecha_tabla = $scope.fechas[i].split('-'); 
+           var valor= Date.UTC(fecha_tabla[0],fecha_tabla[1]-1,fecha_tabla[2]); 
+           if (valor >=fFecha1 && valor <fFecha2) {
+              $scope.arrIngreso.push($scope.fechas[i]);
+          };
+        
+      };
+     console.log($scope.arrIngreso)  
+
+  
+  }).catch(function(err){
+    alert('Error fetching productos')
+  });
+}
+*/
 }]);

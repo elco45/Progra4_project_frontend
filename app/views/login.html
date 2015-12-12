@@ -1,41 +1,18 @@
-<div  id="login-modal"  ng-controller="UsersController" >
-  <div >
-    <div class="loginmodal-container">
-        <h1>Login to Your Account</h1><br>
-        <form>
-            <input type="text" name="user" placeholder="Username" ng-model="user.username">
-            <input type="password" name="pass" placeholder="Password" ng-model="user.password">
-            <input type="submit" name="login" class="login loginmodal-submit" value="Login"  ng-click="login(user)">
-        </form>
-
-        <div class="login-help">
-            <a href="#">Register</a> - <a href="#">Forgot Password</a>
-        </div>
-    </div>
-</div>
-</div>
-
-<!--
-<div class="content" ng-controller="UsersController">
-    <MARQUEE><h1>Deposito Emelina Control de Acceso</h1></MARQUEE>
-    <div class="row" >
-            <label class="col-xs-4"></label>
-            <div id="content" class="col-xs-8 transparente">
-                <form  class="form-horizontal" role="form">
-                    <h1>LOGIN</h1>
-                    <div>
-                       <input type="text"  placeholder="INGRESE SU USUARIO..." id="username" ng-model="user.username">
-                   </div>
-                   <div>
-                    <input type="password" placeholder="INGRESE SU CONTRASEÑA..." id="password" required="" ng-model="user.password">
-                </div>
-                <input type="submit" value="Entrar"  ng-click="login(user)">
+<div class="div_negro"></div>
+<div  class="loginmodal"  ng-controller="UsersController" >
+    <div class="row">
+        <div class="loginmodal-container col-md-8 col-md-offset-4 col-xs-12">
+            <img id="logo" src="../img/logo.jpg">
+            <form>
+                <label id="logo-letras">Usuario:</label>
+                <input type="text" name="user" placeholder="Usuario.." ng-model="user.username">
+                <label>Contraseña:</label>
+                <input type="password" name="pass" placeholder="Contraseña.." ng-model="user.password">
+                <label></label>
+                <input type="submit" name="login" class="login loginmodal-submit" value="Login"  ng-click="login(user)">
             </form>
-            <div class="boton">
-                <p>Bienvenido A Deposito Emelina</p>
-            </div>
-
         </div>
     </div>
 </div>
+
 
