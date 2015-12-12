@@ -255,6 +255,9 @@ $scope.calcular_fecha = function(fecha){
 
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
+    console.log("entro ")
+    /*
+
       $scope.fechas= response.data;
       var I=$scope.fecha_ingreso.inicial;
       console.log(I)
@@ -271,7 +274,7 @@ $scope.getIngresos = function(){
               $scope.arrIngreso.push($scope.fechas[i]);
           };
         
-      };
+      };*/
      console.log($scope.arrIngreso)  
 
   
