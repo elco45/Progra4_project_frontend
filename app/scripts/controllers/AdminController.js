@@ -257,13 +257,9 @@ $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
       $scope.fechas= response.data;
       var I=$scope.fecha_ingreso.inicial;
-      console.log(I)
-       var fechaI = I.split('-'); 
-       var  fechaF = $scope.fecha_ingreso.final.split('-');
-       var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
-       var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
-        console.log(fFecha1);
-        console.log(fFecha2)       
+      var fi=I.getFullYear()+"-"+(I.getMonth()+1)+"-"+I.getDate();
+        console.log(fi);
+        console.log(I)       
      console.log($scope.arrIngreso)  
 
   
