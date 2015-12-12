@@ -367,7 +367,7 @@ $scope.getIngresos = function(){
   for (var i =0; i <$scope.arrIngreso.length; i++) {
     for (var j = 0; j < $scope.ingresofecha.length; j++) {
       if ($scope.arrIngreso[i].fecha===$scope.ingresofecha[j].fecha) {
-        $scope.Ingresovalor[i]+=$scope.arrIngreso[i].total;
+        $scope.Ingresovalor[j]+=$scope.arrIngreso[i].total;
       }
     };
   }
