@@ -252,7 +252,7 @@ $scope.calcular_fecha = function(fecha){
        var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
        return dias;
 }
-/*
+
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
       $scope.fechas= response.data;
@@ -279,5 +279,5 @@ $scope.getIngresos = function(){
     alert('Error fetching productos')
   });
 }
-*/
+
 }]);
