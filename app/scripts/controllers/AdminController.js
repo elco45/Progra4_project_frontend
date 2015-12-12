@@ -273,7 +273,9 @@ $scope.getIngresos = function(){
        $scope.arrIngreso=[];
       for (var i = 0; i <$scope.fechas.length; i++) {
 
-           var fecha_tabla = $scope.fechas[i].split('-'); 
+           var ft = $scope.fechas[i]; 
+           console,log(ft)
+           var fecha_tabla=ft.split('-')
            var valor= Date.UTC(fecha_tabla[0],fecha_tabla[1]-1,fecha_tabla[2]); 
            if (valor >=fFecha1 && valor <fFecha2) {
               $scope.arrIngreso.push($scope.fechas[i]);
