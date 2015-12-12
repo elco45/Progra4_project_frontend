@@ -255,11 +255,30 @@ $scope.calcular_fecha = function(fecha){
 
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
-      $scope.fechas= response.data;
-      var I=$scope.fecha_ingreso.inicial;
-      var fi=I.getFullYear()+"-"+(I.getMonth()+1)+"-"+I.getDate();
-        console.log(fi);
-        console.log(I)       
+    console.log("entro ")
+     $scope.fechas= response.data;
+      var fechaInicial=$scope.fecha_ingreso.inicial;
+      var fechaFinal=$scope.fecha_ingreso.final;
+
+      var fi=fechaInicial.getFullYear()+"-"+(fechaInicial.getMonth()+1)+"-"+fechaInicial.getDate();
+      var ff=fechaFinal.getFullYear()+"-"+(fechaFinal.getMonth()+1)+"-"+fechaFinal.getDate();
+
+       var fechaI = fechaInicial.split('-'); 
+       var  fechaF = ff.split('-');
+
+       var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
+       var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
+        
+       $scope.arrIngreso=[];
+      for (var i = 0; i <$scope.fechas.length(); i++) {
+
+           var fecha_tabla = $scope.fechas[i].split('-'); 
+           var valor= Date.UTC(fecha_tabla[0],fecha_tabla[1]-1,fecha_tabla[2]); 
+           if (valor >=fFecha1 && valor <fFecha2) {
+              $scope.arrIngreso.push($scope.fechas[i]);
+          };
+        
+      };
      console.log($scope.arrIngreso)  
 
   
