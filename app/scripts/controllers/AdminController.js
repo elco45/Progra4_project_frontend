@@ -367,8 +367,6 @@ $scope.getIngresos = function(){
     
       if ($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)!=-1) {
         $scope.Ingresovalor[$scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)]+=$scope.arrIngreso[i].total;
-        console.log("entre 2");
-        break;
       }
     
   }
