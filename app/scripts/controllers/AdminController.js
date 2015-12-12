@@ -263,7 +263,7 @@ $scope.getIngresos = function(){
       var fi=fechaInicial.getFullYear()+"-"+(fechaInicial.getMonth()+1)+"-"+fechaInicial.getDate();
       var ff=fechaFinal.getFullYear()+"-"+(fechaFinal.getMonth()+1)+"-"+fechaFinal.getDate();
 
-       var fechaI = fechaInicial.split('-'); 
+       var fechaI = fi.split('-'); 
        var  fechaF = ff.split('-');
 
        var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
