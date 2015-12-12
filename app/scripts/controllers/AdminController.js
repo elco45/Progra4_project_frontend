@@ -255,9 +255,6 @@ $scope.calcular_fecha = function(fecha){
 
 $scope.getIngresos = function(){
   HomeService.GetIngresos().then(function(response){
-    console.log("entro ")
-    /*
-
       $scope.fechas= response.data;
       var I=$scope.fecha_ingreso.inicial;
       console.log(I)
@@ -265,16 +262,8 @@ $scope.getIngresos = function(){
        var  fechaF = $scope.fecha_ingreso.final.split('-');
        var fFecha1 = Date.UTC(fechaI[0],fechaI[1]-1,fechaI[2]); 
        var fFecha2 = Date.UTC(fechaF[0],fechaF[1]-1,fechaF[2]);
-        $scope.arrIngreso=[];
-      for (var i = 0; i <$scope.fechas.length(); i++) {
-
-           var fecha_tabla = $scope.fechas[i].split('-'); 
-           var valor= Date.UTC(fecha_tabla[0],fecha_tabla[1]-1,fecha_tabla[2]); 
-           if (valor >=fFecha1 && valor <fFecha2) {
-              $scope.arrIngreso.push($scope.fechas[i]);
-          };
-        
-      };*/
+        console.log(fFecha1);
+        console.log(fFecha2)       
      console.log($scope.arrIngreso)  
 
   
