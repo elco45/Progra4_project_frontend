@@ -364,13 +364,13 @@ $scope.getIngresos = function(){
     $scope.Ingresovalor.push(0);
   };
   for (var i =0; i <$scope.arrIngreso.length; i++) {
-    for (var j = 0; j < $scope.ingresofecha.length; j++) {
-      if ($scope.arrIngreso[i].fecha===$scope.ingresofecha[j].fecha) {
-        $scope.Ingresovalor[j]+=$scope.arrIngreso[i].total;
+    
+      if ($scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)!=-1) {
+        $scope.Ingresovalor[$scope.ingresofecha.indexOf($scope.arrIngreso[i].fecha)]+=$scope.arrIngreso[i].total;
         console.log("entre 2");
         break;
       }
-    };
+    
   }
   console.log($scope.ingresofecha);
   console.log($scope.Ingresovalor);
