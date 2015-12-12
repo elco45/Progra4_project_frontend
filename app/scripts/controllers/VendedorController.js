@@ -6,6 +6,7 @@ angular.module('AngularScaffold.Controllers')
       $scope.producto={};
       $scope.search={};
       $scope.lf_cantidad=1;
+      $scope.tot;
 
       $scope.goAdmin=function(){
         $state.go('admin');
@@ -36,6 +37,7 @@ angular.module('AngularScaffold.Controllers')
                   total: $scope.producto.precio*$scope.lf_cantidad
                 }
                 $scope.factura.push($scope.linea_factura);
+
                 $scope.tot=0;
                 for(var i = 0; i < $scope.factura.length; i++) {
                   $scope.tot+=$scope.factura[i]['total'];
@@ -75,6 +77,7 @@ angular.module('AngularScaffold.Controllers')
           HomeService.Facturar($scope.factura[i]).then(function(response){
           });  
         }
+         $scope.crearTotal();
         window.print();
         $scope.factura=[];
         $('#sub').val("");
@@ -124,6 +127,14 @@ angular.module('AngularScaffold.Controllers')
                 return i;
             }
         }
+      }
+      $scope.crearTotal =function(){
+
+         HomeService.AddIngreso($scope.tot).then(function(response){
+
+         }).catch(function(err){
+          alert('No existe en la base de datos')
+        });
       }
       
 }]);
