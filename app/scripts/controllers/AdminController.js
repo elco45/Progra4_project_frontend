@@ -96,7 +96,7 @@ $scope.delProd=function(object){
 }
 
 $scope.delUser=function(object){
-  HomeService.DelUsers(object.username).then(function(response){
+  HomeService.DelUsers(object.username).then(function(){
   }).catch(function(err){
     alert('Error fetching users')
     console.log(object)
@@ -156,10 +156,10 @@ $scope.register = function(){
 }
 
 $scope.putProd = function(){
-  HomeService.PutProductos($scope.productoM).then(function(response){
+  HomeService.PutProductos($scope.productoM).then(function(){
     alert('Modified correctly!');
   }).catch(function(err){
-    alert(err.data.error + " " + err.data.message);
+    
   })
   $scope.getProductos();
   $scope.productoM={
