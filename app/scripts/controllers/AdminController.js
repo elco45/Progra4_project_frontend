@@ -89,6 +89,7 @@ $scope.getUsers();
 $scope.delProd=function(object){
 
   HomeService.DelProductos(object.id).then(function(response){
+    console.log("entre aquiiiiiiiiiiiii");
   }).catch(function(err){
     alert('Error fetching products')
   });
