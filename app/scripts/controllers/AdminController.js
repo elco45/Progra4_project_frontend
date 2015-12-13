@@ -55,11 +55,11 @@ angular.module('AngularScaffold.Controllers')
 
    var dif = fFecha2 - fFecha1;
    var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
-   alert(dias);
+
    if (dias<=0) {
-    alert("Error Las fechas son incorectas. Elmensage que vera acontinuacion es incorrecto. intentelo de nuevo ");
+    alert("Error Las fechas son incorectas. El mensage que vera acontinuacion es incorrecto. intentelo de nuevo ");
   }else{
-    HomeService.PostProductos($scope.producto).then(function(response){
+      HomeService.PostProductos($scope.producto).then(function(response){
       $scope.getProductos();
 
       $scope.producto = {
