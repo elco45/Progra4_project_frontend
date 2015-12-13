@@ -96,7 +96,7 @@ $scope.delProd=function(object){
 }
 
 $scope.delUser=function(object){
-  HomeService.DelUsers(object.username).then(function(){
+  HomeService.DelUsers(object.username).then(function(response){
   }).catch(function(err){
     alert('Error fetching users')
     console.log(object)
