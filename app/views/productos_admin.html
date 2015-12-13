@@ -1,11 +1,32 @@
 <div class="row">
+	<h1 class="titulos"> <center>Manejo de productos</center></h1>
+	<hr class="color_rayas">
 	<div class="col-lg-12">
-		<ul id="myTab" class="nav nav-tabs nav-justified">
+		<ul id="myTab" class="nav nav2 nav-tabs nav-justified">
 			<li class="active"><a data-target="#agregarProduct" data-toggle="tab">Agregar Producto</a>
 			</li>
 			<li class=""><a class="btn" data-target="#modificarProduct" ng-click="getFetch()" data-toggle="tab">Modificar Producto</a>
 			</li>
 		</ul>
+		       <div id="mensage" class="modal fade" role="dialog">
+							      <div class="modal-dialog modal-lg">
+							        <div class="modal-content">
+							          <div class="modal-header">
+							            <button type="button" class="close" data-dismiss="modal">&times;</button>
+							            <h4 class="modal-title">Control de Eliminacion</h4>
+							          </div>
+							          <div class="modal-body">
+							           		<center>
+							           			Agregado exitosamente
+							           			Espere un momento  para actualizar  la tabla
+							           			<br>
+							          			<button type="button" class="btn btn-danger caja" data-dismiss="modal">Aceptar</button>
+							           		</center>
+							          </div>
+							        </div>
+							      </div>
+							    </div>
+
 
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade active in" id="agregarProduct">
@@ -35,16 +56,16 @@
 							</tr>
 							<tr>
 								<td>Precio</td>
-								<td><input type="number"  ng-model="producto.precio"></td>
+								<td><input type="number"  ng-model="producto.precio" MIN="1" step="10" ></td>
 							</tr>
 							<tr>
 							<td>Cantidad</td>
-								<td><input type="number"  ng-model="producto.cantidad"></td>
+								<td><input type="number"  ng-model="producto.cantidad" MIN="1" value="1"></td>
 							</tr>
 
 							<tr >
 								<td colspan="2">
-									<button class="btn btn-primary" ng-click="addProductos()">AGREGAR</button>
+									<button class="btn btn-primary"  data-toggle="modal" data-target="#mensage"  ng-click="addProductos()">AGREGAR</button>
 								</td>
 							</tr>
 
@@ -74,6 +95,10 @@
 					</div>
 				</div>
 			</div>
+
+
+
+			
 
 			<div class="tab-pane fade" id="modificarProduct">
 				  <div id="myModal" class="modal fade" role="dialog">
@@ -125,6 +150,27 @@
 			        </div>
 			      </div>
 			    </div>
+
+
+			       <div id="myModal2" class="modal fade" role="dialog">
+							      <div class="modal-dialog modal-lg">
+							        <div class="modal-content">
+							          <div class="modal-header">
+							            <button type="button" class="close" data-dismiss="modal">&times;</button>
+							            <h4 class="modal-title">Control de Eliminacion</h4>
+							          </div>
+							          <div class="modal-body">
+							           		<center>
+							           			Eliminado exitosamente
+							           			Espere un momento  para actualizar tabla
+							           			<br>
+							          			<button type="button" class="btn btn-danger caja" data-dismiss="modal">Aceptar</button>
+							           		</center>
+							          </div>
+							        </div>
+							      </div>
+							    </div>
+
 				<hr>
 				<div class="row">
 					<table  id="tabla_color" class="table table-bordered table-hover">
@@ -145,8 +191,8 @@
 							<td>{{productoM.precio}}</td>
 							<td>{{productoM.cantidad}}</td>
 							<td> 
-								<input type="button" class="btn btn-primary caja" value="Modificar" data-toggle="modal" data-target="#myModal" ng-click="ponerModProd(productoM)"> 
-								<input type="button" class="btn btn-danger caja" value="Eliminar" ng-click="delProd(productoM)">
+							 	<input type="button" class="btn btn-primary caja" value="Modificar" data-toggle="modal" data-target="#myModal" ng-click="ponerModProd(productoM)"> 
+								<input type="button" class="btn btn-danger caja" value="Eliminar"  data-toggle="modal" data-target="#myModal2" ng-click="delProd(productoM)">
 							</td>
 						</tr>
 					</table>

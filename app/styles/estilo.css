@@ -1,6 +1,10 @@
 /*Estilo de loing*/
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-
+@import url(https://fonts.googleapis.com/css?family=Bitter);
+@import url(https://fonts.googleapis.com/css?family=Titan+One);
+@import url(https://fonts.googleapis.com/css?family=Alike+Angular);
+@import url(https://fonts.googleapis.com/css?family=Stalinist+One);
+@import url(https://fonts.googleapis.com/css?family=Modern+Antiqua);
 /****** LOGIN MODAL ******/
 
 
@@ -355,7 +359,8 @@ ul.alert-dropdown {
    text-align: center;
 }
 .tabla_color_encabesado{
-	background-color: #E8ABF5;
+	background-color: black;
+  color: white;
 }
 
 
@@ -422,9 +427,28 @@ ul.alert-dropdown {
   width: 300px;
   background: #CCC
 }
+.div_degraficas{
+  min-width: 310px;
+  max-width: 800px; 
+  height: 400px; 
+  margin: 0 auto;
+}
 
 .div_negro{
   background-color: black;
   width: 100%;
   height: 60px;
+}
+.color_rayas{
+  background: black;
+  height: 3px;
+  border: double;
+}
+.titulos{
+ font-family: 'Stalinist One', cursive;
+ font-size: 60px;
+}
+.estilo_de_letrasa{
+ font-family: 'Modern Antiqua', cursive;
+ font-size: 20px;
 }

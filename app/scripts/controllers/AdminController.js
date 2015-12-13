@@ -45,214 +45,241 @@ angular.module('AngularScaffold.Controllers')
   $scope.getProductos();
 
   $scope.addProductos = function(){
+   var f1=$scope.producto.fecha_ingreso.getFullYear()+"-"+($scope.producto.fecha_ingreso.getMonth()+1)+"-"+$scope.producto.fecha_ingreso.getDate();
+   var f2=$scope.producto.fecha_venc.getFullYear()+"-"+($scope.producto.fecha_venc.getMonth()+1)+"-"+$scope.producto.fecha_venc.getDate();
+   var aFecha1 = f1.split('-'); 
+   var aFecha2 = f2.split('-');
+
+   var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]); 
+   var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]); 
+
+   var dif = fFecha2 - fFecha1;
+   var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+   alert(dias);
+   if (dias<=0) {
+    alert("Error Las fechas son incorectas. Elmensage que vera acontinuacion es incorrecto. intentelo de nuevo ");
+  }else{
     HomeService.PostProductos($scope.producto).then(function(response){
       $scope.getProductos();
+
+      $scope.producto = {
+        id: "",
+        descripcion: "",
+        fecha_ingreso: "",
+        fecha_venc: "",
+        precio: "",
+        Cantidad: ""
+      };
     }).catch(function(err){
       alert("Error posting to productos");
     });
   }
+}
 
-  $scope.getUsers =function(){
-    HomeService.GetUsers().then(function(response){
-      $scope.users=response.data;
-    }).catch(function(err){
-      alert('Error fetching users')
-    });
-  }
+$scope.getUsers =function(){
+  HomeService.GetUsers().then(function(response){
+    $scope.users=response.data;
+  }).catch(function(err){
+    alert('Error fetching users')
+  });
+}
 
+$scope.getUsers();
+
+$scope.delProd=function(object){
+
+  HomeService.DelProductos(object.id).then(function(response){
+  }).catch(function(err){
+    alert('Error fetching products')
+  });
+  $scope.getProductos();
+}
+
+$scope.delUser=function(object){
+  HomeService.DelUsers(object.username).then(function(response){
+  }).catch(function(err){
+    alert('Error fetching users')
+    console.log(object)
+  });
   $scope.getUsers();
+}
 
-  $scope.delProd=function(object){
-    HomeService.DelProductos(object.id).then(function(response){
-    }).catch(function(err){
-      alert('Error fetching products')
-    });
-    $scope.getProductos();
+$scope.cambiar_div = function(nombre){
+  if (nombre==="inicio") {
+   $scope.template = '/views/inicio.html';
+ }else if (nombre==="vendedor") {
+  $scope.template = '/views/vendedor_admin.html';
+}else if (nombre==="productos_admin"){
+  $scope.template = '/views/productos_admin.html';
+}else if (nombre==="productos_riesgo") {
+  $scope.template = '/views/productos_riesgo_admin.html';
+}else if (nombre==="graficas_ingreso") {
+  $scope.template = '/views/graficas_ingreso.html';
+}else if (nombre==="graficas_producto") {
+  $scope.template = '/views/grafica_producto.html';
+};
+}
+
+$scope.goVend=function(){
+  $state.go('vendedor');
+}
+
+$scope.register = function(){
+  var user = {
+   username: $scope.user.username, 
+   password:  $scope.user.password, 
+   ID: $scope.user.ID,
+   nombre: $scope.user.nombre,
+   scope: [$scope.user.scope]};
+   HomeService.Register(user).then(function(response){
+    alert('Registered in correctly!');
+  }).catch(function(err){
+    alert(err.data.error + " " + err.data.message);
+  })
+  $scope.user={
+   username: "", 
+   password:  "", 
+   ID: "",
+   nombre: "",
+   scope: [""]};
+ }
+
+ $scope.ponerModProd =function(object){
+  $scope.productoM={
+    id : object.id,
+    descripcion : object.descripcion,
+    fecha_ingreso: new Date(object.fecha_ingreso),
+    fecha_venc: new Date(object.fecha_venc),
+    precio: object.precio,
+    cantidad: object.cantidad
   }
+}
 
-  $scope.delUser=function(object){
-    HomeService.DelUsers(object.username).then(function(response){
-    }).catch(function(err){
-      alert('Error fetching users')
-      console.log(object)
-    });
-    $scope.getUsers();
+$scope.putProd = function(){
+  HomeService.PutProductos($scope.productoM).then(function(response){
+    alert('Modified correctly!');
+  }).catch(function(err){
+    alert(err.data.error + " " + err.data.message);
+  })
+  $scope.getProductos();
+  $scope.productoM={
+    id : "",
+    descripcion : "",
+    fecha_ingreso: "",
+    fecha_venc: "",
+    precio: "",
+    cantidad: ""
   }
+}
 
-  $scope.cambiar_div = function(nombre){
-    if (nombre==="vendedor") {
-      $scope.template = '/views/vendedor_admin.html';
-    }else if (nombre==="productos_admin"){
-      $scope.template = '/views/productos_admin.html';
-    }else if (nombre==="productos_riesgo") {
-      $scope.template = '/views/productos_riesgo_admin.html';
-    }else if (nombre==="graficas_ingreso") {
-      $scope.template = '/views/graficas_ingreso.html';
-    }else if (nombre==="graficas_producto") {
-      $scope.template = '/views/grafica_producto.html';
-    };
-  }
-
-  $scope.goVend=function(){
-    $state.go('vendedor');
-  }
-
-  $scope.register = function(){
-    var user = {
-     username: $scope.user.username, 
-     password:  $scope.user.password, 
-     ID: $scope.user.ID,
-     nombre: $scope.user.nombre,
-     scope: [$scope.user.scope]};
-     HomeService.Register(user).then(function(response){
-      alert('Registered in correctly!');
-    }).catch(function(err){
-      alert(err.data.error + " " + err.data.message);
-    })
-    $scope.user={
-     username: "", 
-     password:  "", 
-     ID: "",
-     nombre: "",
-     scope: [""]};
-   }
-
-   $scope.ponerModProd =function(object){
-    $scope.productoM={
-      id : object.id,
-      descripcion : object.descripcion,
-      fecha_ingreso: new Date(object.fecha_ingreso),
-      fecha_venc: new Date(object.fecha_venc),
-      precio: object.precio,
-      cantidad: object.cantidad
-    }
-  }
-
-  $scope.putProd = function(){
-    HomeService.PutProductos($scope.productoM).then(function(response){
-      alert('Modified correctly!');
-    }).catch(function(err){
-      alert(err.data.error + " " + err.data.message);
-    })
-    $scope.getProductos();
-    $scope.productoM={
-      id : "",
-      descripcion : "",
-      fecha_ingreso: "",
-      fecha_venc: "",
-      precio: "",
-      cantidad: ""
-    }
-  }
-
-  /*¨grafica para productos disponibles*/
-  $scope.grafica_producto1 = function () {
-    var serie1 =[["Honduras",10],["Nicaragua",15],["Panama",50]];
-    $('#container1').highcharts({
-      chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-      },
-      title: {
-        text: 'Ingresando data a la grafica'
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-            style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-            }
+/*¨grafica para productos disponibles*/
+$scope.grafica_producto1 = function () {
+  var serie1 =[["Honduras",10],["Nicaragua",15],["Panama",50]];
+  $('#container1').highcharts({
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Control porcentage de Productos'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          style: {
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           }
         }
-      },
-      series: [{
-        name: "Brands",
-        colorByPoint: true,
-        data:  $scope.subarreglo_cantidad
-      }]
-    });
-  };
-  $scope.grafica_producto1();
-  $scope.graficaInventario = function () {
-    $('#container_inventario').highcharts({
-      chart: {
-        type: 'bar'
-      },
+      }
+    },
+    series: [{
+      name: "Brands",
+      colorByPoint: true,
+      data:  $scope.subarreglo_cantidad
+    }]
+  });
+};
+$scope.grafica_producto1();
+$scope.graficaInventario = function () {
+  $('#container_inventario').highcharts({
+    chart: {
+      type: 'bar'
+    },
+    title: {
+      text: 'Control Inventario'
+    },
+    subtitle: {
+      text: 'Productos en Existencia'
+    },
+    xAxis: {
+      categories: $scope.nombre_producto,
       title: {
-        text: 'Control Inventario'
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Cantidad (Unidad)',
+        align: 'high'
       },
-      subtitle: {
-        text: 'Productos en Existencia'
-      },
-      xAxis: {
-        categories: $scope.nombre_producto,
-        title: {
-          text: null
+      labels: {
+        overflow: 'justify'
+      }
+    },
+    tooltip: {
+      valueSuffix: ' Unidades'
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: true
         }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Cantidad (Unidad)',
-          align: 'high'
-        },
-        labels: {
-          overflow: 'justify'
-        }
-      },
-      tooltip: {
-        valueSuffix: ' Unidades'
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: true
-          }
-        }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-        shadow: true
-      },
-      credits: {
-        enabled: false
-      },
-      series: [{
-        name: "Cantidad",
-        colorByPoint: true,
-        data: $scope.cantidad_prodcuto
-      }]
-    });
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'top',
+      x: -40,
+      y: 80,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+      shadow: true
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: "Cantidad",
+      colorByPoint: true,
+      data: $scope.cantidad_prodcuto
+    }]
+  });
 };
 
 $scope.grafica_de_ingreso = function(){
 
   $('#grafica_ingresos').highcharts({
     title: {
-      text: 'Combination chart'
+      text: 'Ingresos'
     },
     xAxis: {
       categories: $scope.ingresofecha
     },
     labels: {
       items: [{
-          style: {
+        style: {
           left: '50px',
           top: '18px',
           color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
@@ -264,15 +291,15 @@ $scope.grafica_de_ingreso = function(){
       colorByPoint: true,
       data: $scope.Ingresovalor
     } ,{
-            type: 'spline',
-            name: 'Total',
-            data: $scope.Ingresovalor,
-            marker: {
-                lineWidth: 2,
-                lineColor: Highcharts.getOptions().colors[3],
-                fillColor: 'white'
-            }
-        }]
+      type: 'spline',
+      name: 'Total',
+      data: $scope.Ingresovalor,
+      marker: {
+        lineWidth: 2,
+        lineColor: Highcharts.getOptions().colors[3],
+        fillColor: 'white'
+      }
+    }]
   });
 }
 $scope.graficaInventario(); 
@@ -336,7 +363,7 @@ $scope.getIngresos = function(){
   }
   console.log($scope.ingresofecha);
   console.log($scope.Ingresovalor);
- $scope.grafica_de_ingreso();
+  $scope.grafica_de_ingreso();
 }).catch(function(err){
   alert('Error fetching productos')
 });
