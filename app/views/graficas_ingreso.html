@@ -1,7 +1,18 @@
 <div ng-controller="AdminController">
-	<h1><center>DEPOSITO EMELINA</center></h1>
-	<input type="Date" ng-model="fecha_ingreso.inicial">
-	<input type="Date" ng-model="fecha_ingreso.final">
-	<button ng-click="getIngresos()">Gernerar Grafica</button>
-        <div id="grafica_ingresos" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+	<center>
+			<h1 class="titulos"><center>Ingresos</center></h1>
+			<label class="estilo_de_letrasa">Rango Inicial: 
+				<input type="Date" value="12/12/2015" ng-model="fecha_ingreso.inicial" class="cajas">
+			</label>
+			<labe class="estilo_de_letrasa">Rango Final:
+
+				<input type="Date" ng-model="fecha_ingreso.final" class="cajas" value="2/2/15">
+
+			 </label> 
+
+			<button ng-click="getIngresos()" class="btn btn-primary">Generar grafica</button>
+			<hr class="color_rayas">
+		    <div id="grafica_ingresos" class="div_degraficas"></div>
+        </center>
+
 </div>
