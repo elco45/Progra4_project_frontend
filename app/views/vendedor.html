@@ -1,6 +1,6 @@
 <div ng-controller="VendedorController" class="container color_panel" id="vend">
   <div class="row">
-    <input type="button" ng-click="goAdmin()" value="Admin">
+    <input type="button" class="btn-primary" ng-click="goAdmin()" value="Admin">
   </div>
   <div class="row">
     <div>
@@ -110,12 +110,6 @@
     <label class="col-md-offset-8 col-md-1">Total</label>
     <input id="tot" type="number" disabled="disabled" class="col-md-3" value="0" ng-modal="tot"/>
   </div>
-  <div class="row">
-    <div class="col-md-7 col-md-offset-4">
-      <input type="button" data-toggle="modal" data-target="#efectuarMsg" value="Efectuar Pago">
-      <input class="col-md-offset-1" type="button" ng-click="cancel()" value="Cancelar">
-    </div>
-  </div>  
 </div>
         
         

@@ -17,7 +17,6 @@ angular.module('AngularScaffold.Controllers')
       $scope.login = function(user){
         authService.Login(user).then(function(response){
           $sessionStorage.currentUser = response.data;
-          console.log($sessionStorage.currentUser);
           $scope.user = {};
           if ($sessionStorage.currentUser.scope[0]==="admin") {
             $state.go('admin');
