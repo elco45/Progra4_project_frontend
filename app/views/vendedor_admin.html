@@ -1,44 +1,35 @@
-<h1 class="titulos"><center>Manejo de Usuarios</center></h1>
-<hr class="color_rayas">
-<table  id="tabla_color" class="table table-bordered table-hover">
-	<tr class="tabla_color_encabesado">
-		<td><strong>Nombre</strong></td>
-		<td><strong>ID</strong></td>
-		<td><strong>User</strong></td>
-		<td><strong>Contraseña</strong></td>
-		<td><strong>Tipo</strong></td>
-		<td><strong>Opcion</strong></td>
-	</tr>
-	<tr>
-		<td><input type="text" placeholder="Nombre.." class="cajas" ng-model="user.nombre"></td>
-		<td><input type="text" placeholder="ID.." class="cajas" ng-model="user.ID"></td>
-		<td><input type="text" placeholder="User..." class="cajas" ng-model="user.username"></td>
-		<td><input type="password" placeholder="Contraseña" class="cajas" ng-model="user.password"></td>
-		<td>
-			<form>
-				<input type="radio" name="tipo" ng-model="user.scope" value="vendedor" checked> Vendedor
-				<br>
-				<input type="radio" name="tipo" ng-model="user.scope" value="admin"> Admin
-			</form>
-		</td>
-		<td>
-			<input class="btn btn-primary tamano_botones" type="button" value="Agregar" data-toggle="modal" data-target="#myModal4" ng-click="register()"> 
-		</td>
-	</tr>
-</table>
-<hr>
-<div class="row">
-	<div class="col-xs-12">
-		<div id="myModal3" class="modal fade" role="dialog">
+<div>
+	<h1 class="titulos"><center>Manejo de Usuarios</center></h1>
+	<hr class="color_rayas">
+
+	<!--MODAL-->
+	<div  id="agregarUMsg" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Control de Eliminacion</h4>
+						<h4 class="modal-title">Agregar producto</h4>
 					</div>
 					<div class="modal-body">
 						<center>
-							Eliminacion exitosa
+							Agregado exitosamente!
+							<br>
+							<button type="button" class="btn btn-danger caja" data-dismiss="modal" >Aceptar</button>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="eliminarUMsg" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Eliminar</h4>
+					</div>
+					<div class="modal-body">
+						<center>
+							Eliminado exitosamente!
 							<br>
 							<button type="button" class="btn btn-danger caja" data-dismiss="modal">Aceptar</button>
 						</center>
@@ -47,18 +38,16 @@
 			</div>
 		</div>
 
-
-			<div id="myModal4" class="modal fade" role="dialog">
+		<div  id="errorUMsg" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Control de Usuario</h4>
+						<h4 class="modal-title">Error</h4>
 					</div>
 					<div class="modal-body">
 						<center>
-							Usuario Agregado Exitosamente. 
-							Espere un monmeto para que la tabla se actualice
+							Error en algún campo! Ingrese los valores nuevamente!
 							<br>
 							<button type="button" class="btn btn-danger caja" data-dismiss="modal">Aceptar</button>
 						</center>
@@ -67,28 +56,55 @@
 			</div>
 		</div>
 
+	<table  id="tabla_color" class="table table-bordered table-hover">
+		<tr class="tabla_color_encabesado">
+			<td><strong>Nombre</strong></td>
+			<td><strong>ID</strong></td>
+			<td><strong>User</strong></td>
+			<td><strong>Contraseña</strong></td>
+			<td><strong>Tipo</strong></td>
+			<td><strong>Opcion</strong></td>
+		</tr>
+		<tr>
+			<td><input type="text" placeholder="Nombre.." class="cajas" ng-model="user.nombre"></td>
+			<td><input type="text" placeholder="ID.." class="cajas" ng-model="user.ID"></td>
+			<td><input type="text" placeholder="User..." class="cajas" ng-model="user.username"></td>
+			<td><input type="password" placeholder="Contraseña" class="cajas" ng-model="user.password"></td>
+			<td>
+				<form>
+					<input type="radio" name="tipo" ng-model="user.scope" value="vendedor" checked> Vendedor
+					<br>
+					<input type="radio" name="tipo" ng-model="user.scope" value="admin"> Admin
+				</form>
+			</td>
+			<td>
+				<input class="btn btn-primary tamano_botones" type="button" value="Agregar" ng-click="register()"> 
+			</td>
+		</tr>
+	</table>
+	<hr>
 
-		<table id="tabla_color" class="table table-bordered table-hover">
-			<tr class="tabla_color_encabesado">
-				<td><strong>Nombre</strong></td>
-				<td><strong>ID</strong></td>
-				<td><strong>User</strong></td>
-				<td><strong>Posición</strong></td>
-				<td>Eliminar</td>
-			</tr>
-			<tr ng-repeat="user in users">
-				<td>{{user.nombre}}</td>
-				<td>{{user.ID}}</td>
-				<td>{{user.username}}</td>
-				<td>{{user.scope}}</td>
-				<td>
-					
-					<input class="btn btn-danger tamano_botones" type="button" value="Eliminar"  data-toggle="modal" data-target="#myModal3" ng-click="delUser(user)"> 
-				</td>
-			</tr>
-		</table>
-	</div>
+	<table id="tabla_color" class="table table-bordered table-hover">
+		<tr class="tabla_color_encabesado">
+			<td><strong>Nombre</strong></td>
+			<td><strong>ID</strong></td>
+			<td><strong>User</strong></td>
+			<td><strong>Posición</strong></td>
+			<td>Eliminar</td>
+		</tr>
+		<tr ng-repeat="user in users">
+			<td>{{user.nombre}}</td>
+			<td>{{user.ID}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.scope}}</td>
+			<td>
+
+				<input class="btn btn-danger tamano_botones" type="button" value="Eliminar" ng-click="delUser(user)"> 
+			</td>
+		</tr>
+	</table>
 </div>
+
 
 
 
