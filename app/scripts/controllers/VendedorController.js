@@ -77,8 +77,12 @@ angular.module('AngularScaffold.Controllers')
           HomeService.Facturar($scope.factura[i]).then(function(response){
           });  
         }
-         $scope.crearTotal();
-        window.print();
+        $scope.crearTotal();
+        $('#efectuarMsg').modal('toggle');
+        
+          window.print();
+        
+        
         $scope.factura=[];
         $('#sub').val("");
         $('#isv').val("");

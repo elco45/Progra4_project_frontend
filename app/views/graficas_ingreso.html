@@ -1,18 +1,31 @@
 <div ng-controller="AdminController">
 	<center>
-			<h1 class="titulos"><center>Ingresos</center></h1>
-			<label class="estilo_de_letrasa">Rango Inicial: 
-				<input type="Date" value="12/12/2015" ng-model="fecha_ingreso.inicial" class="cajas">
-			</label>
-			<labe class="estilo_de_letrasa">Rango Final:
-
-				<input type="Date" ng-model="fecha_ingreso.final" class="cajas" value="2/2/15">
-
-			 </label> 
-
-			<button ng-click="getIngresos()" class="btn btn-primary">Generar grafica</button>
-			<hr class="color_rayas">
-		    <div id="grafica_ingresos" class="div_degraficas"></div>
-        </center>
-
+		<h1 class="titulos"><center>Ingresos</center></h1>
+		<label class="estilo_de_letrasa">Rango Inicial: 
+			<input type="Date" value="12/12/2015" ng-model="fecha_ingreso.inicial" class="cajas">
+		</label>
+		<labe class="estilo_de_letrasa">Rango Final:
+			<input type="Date" ng-model="fecha_ingreso.final" class="cajas" value="2/2/15">
+		</label> 
+		<div  id="errorFMsg" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Error</h4>
+					</div>
+					<div class="modal-body">
+						<center>
+							Error en algún campo de fecha!
+							<br>
+							<button type="button" class="btn btn-danger caja" data-dismiss="modal">Aceptar</button>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button ng-click="getIngresos()" class="btn btn-primary">Generar grafica</button>
+		<hr class="color_rayas">
+		<div id="grafica_ingresos" class="div_degraficas"></div>
+	</center>
 </div>
