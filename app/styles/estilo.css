@@ -398,7 +398,7 @@ ul.alert-dropdown {
 .normal {
   border: 1px solid #000;
   background: white;
-  height: 500px;
+  height: 570px;
 }
 
 .colorcabeza{
@@ -423,6 +423,8 @@ ul.alert-dropdown {
 .color_panel{
     background-color: #DED9D9;
 }
+
+
 .tamaño_lector{
   width: 300px;
   background: #CCC
