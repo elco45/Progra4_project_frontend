@@ -83,12 +83,13 @@ angular.module('AngularScaffold.Controllers')
   }
 
   $scope.delProd=function(object){
-    ProductoService.DelProductos(object.id).then(function(){
+    ProductoService.DelProductos(object.id).then(function(data){
+    	$scope.getProductos();
+    	$('#eliminarMsg').modal('show');
     }).catch(function(err){
      $('#errorMsg').modal('show')
    });
-    $scope.getProductos();
-    $('#eliminarMsg').modal('show');
+    
   }
 
   $scope.ponerModProd =function(object){
@@ -120,12 +121,11 @@ angular.module('AngularScaffold.Controllers')
       if (dias<=0) {
         $('#errorMsg').modal('show')
       }else{
-        ProductoService.PutProductos($scope.productoM).then(function(){
-
+        ProductoService.PutProductos($scope.productoM).then(function(data){
+        	
         }).catch(function(err){
          $('#errorMsg').modal('show')
        })
-        $('#modMsg').modal('show')
         $scope.getProductos();
         $scope.productoM={
           id : "",
@@ -135,6 +135,7 @@ angular.module('AngularScaffold.Controllers')
           precio: "",
           cantidad: ""
         }
+        $('#modMsg').modal('show')
       }
     }
   }
@@ -152,35 +153,36 @@ angular.module('AngularScaffold.Controllers')
 
   $scope.register = function(){
     var user = {
-     username: $scope.user.username, 
-     password:  $scope.user.password, 
-     ID: $scope.user.ID,
-     nombre: $scope.user.nombre,
-     scope: [$scope.user.scope]
-   };
-   UserService.Register(user).then(function(){
-      $('#agregarUMsg').modal('show')
+	     username: $scope.user.username, 
+	     password:  $scope.user.password, 
+	     ID: $scope.user.ID,
+	     nombre: $scope.user.nombre,
+	     scope: [$scope.user.scope]
+   	};
+   	UserService.Register(user).then(function(data){
+	     $scope.user={
+	      username: "", 
+	      password:  "", 
+	      ID: "",
+	      nombre: "",
+	      scope: [""]
+	    };
+	    $scope.getUsers();
+	    $('#agregarMsgU').modal('show')
     }).catch(function(err){
       alert(err.data.error + " " + err.data.message);
     })
-    $scope.user={
-      username: "", 
-      password:  "", 
-      ID: "",
-      nombre: "",
-      scope: [""]
-    };
-    $('#agregarMsgU').modal('show')
+    
   }
 
   $scope.delUser=function(object){
     UserService.DelUsers(object.username).then(function(){
-    
+    	$scope.getUsers();
+    	$('#eliminarUMsg').modal('show');
     }).catch(function(err){
       $('#errorUMsg').modal('show')
     });
-    $scope.getUsers();
-    $('#eliminarUMsg').modal('show');
+    
   }
 
 
