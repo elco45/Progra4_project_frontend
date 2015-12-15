@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('UserService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'http://localhost:8000/';
+		var baseUrl = 'https://bodega-emelina-backend.herokuapp.com/';
 		return {
 			Register: function(payload,w){
 	          return $http.post(baseUrl + "v1/register", payload);

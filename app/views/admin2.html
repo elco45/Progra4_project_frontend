@@ -1,4 +1,4 @@
-<div id="wrapper" ng-controller="AdminController">
+<div id="wrapper" ng-controller="AdminController" ng-init="cambiar_div('inicio')">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,8 +33,8 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a><i class="fa fa-fw fa-dashboard" ng-click="cambiar_div('inicio')"></i> Inicio</a>
+                <li class="active" ng-click="cambiar_div('inicio')">
+                    <a><i class="fa fa-fw fa-dashboard" ></i> Inicio</a>
                 </li>
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficas <i class="fa fa-fw fa-caret-down"></i></a>
