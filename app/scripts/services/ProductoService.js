@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('ProductoService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'https://bodega-emelina-backend.herokuapp.com/';
+		var baseUrl = 'http://localhost:8000/';
 		return {
 			GetProductos:function(){
 				return $http.get(baseUrl + "v1/productos");
