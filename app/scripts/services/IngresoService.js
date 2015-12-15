@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('IngresoService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'http://localhost:8000/';
+		var baseUrl = 'https://bodega-emelina-backend.herokuapp.com/';
 		return {
 			AddIngreso: function(payload){
 				return $http.post(baseUrl+"v1/ingreso",payload);
