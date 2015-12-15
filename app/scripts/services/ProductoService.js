@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('ProductoService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'https://bodega-emelina-backend.herokuapp.com/';
+		var baseUrl = 'http://localhost:8000/';
 		return {
 			GetProductos:function(){
 				return $http.get(baseUrl + "v1/productos");
@@ -9,10 +9,10 @@ angular.module('AngularScaffold.Services').factory('ProductoService', ['$http',
 			PostProductos: function(payload){
 				return $http.post(baseUrl + "v1/productos",payload);
 			},
-		    PutProductos: function(payload){
+		    PutProductos: function(payload,w){
 				return $http.put(baseUrl+"v1/modprod",payload);
 			},
-			DelProductos: function(id){
+			DelProductos: function(id,a){
 				return $http.delete(baseUrl+"v1/delprod/"+id);
 			}
 	    };
